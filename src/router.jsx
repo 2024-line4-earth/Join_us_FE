@@ -7,16 +7,10 @@ import SignupPage from "./page/SignupPage";
 import JoinExPage from "./page/JoinExPage";
 import JoinKeyPage from "./page/JoinKeyPage";
 import JoinCreatePage from "./page/JoinCreatePage";
-
+import MarketPage from "./page/MarketPage";
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
+  { path: "/", element: <App /> },
+  { path: "/login", element: <LoginPage /> },
   { path: "/signup", element: <SignupPage /> },
   {
     path: "/join",
@@ -34,6 +28,7 @@ const router = createBrowserRouter([
     path: "/create",
     element: <JoinCreatePage />,
   },
+  { path: "/market", element: <MarketPage /> },
 ]);
 
 export default router;
