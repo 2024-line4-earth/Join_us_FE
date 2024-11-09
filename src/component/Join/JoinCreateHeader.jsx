@@ -3,29 +3,29 @@ import * as S from "./styled";
 import LeftBtn from '../../assets/img/leftBtn.svg';
 import down from '../../assets/img/down.svg';
 
-const JoinKeyHeader = () => {
-  // 드롭다운의 표시 상태를 관리하는 state
+const JoinCreateHeader = ({ currentPage, goBackToPreviousPage }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // 드롭다운 열고 닫는 함수
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
   return ( 
     <>
-      <S.KeyHeader>
-        <S.HeaderBtn>
+      <S.KeyHeader currentPage={currentPage}>
+        {/* LeftBtn 클릭 시 goBackToPreviousPage 실행 */}
+        <S.HeaderBtn onClick={goBackToPreviousPage}>
           <img src={LeftBtn} alt="Left Btn" />
         </S.HeaderBtn>
         <S.HeaderRight>
-          {/* 키워드 선택 버튼 */}
-          <S.Select>
-            <span>키워드 선택</span> <img src={down} alt="down toggle" onClick={toggleDropdown}/>
-          </S.Select>
+          {currentPage === 1 && (
+            <S.Select>
+              <span>키워드 선택</span> 
+              <img src={down} alt="down toggle" onClick={toggleDropdown} />
+            </S.Select>
+          )}
         </S.HeaderRight>
-        {/* 드롭다운 메뉴 */}
-        {isDropdownOpen && (
+        {currentPage === 1 && isDropdownOpen && (
           <S.DropdownMenu>
             <S.DropdownItem>전체</S.DropdownItem>
             <S.DropdownItem>일회용품</S.DropdownItem>
@@ -40,4 +40,4 @@ const JoinKeyHeader = () => {
   );
 };
 
-export default JoinKeyHeader;
+export default JoinCreateHeader;
