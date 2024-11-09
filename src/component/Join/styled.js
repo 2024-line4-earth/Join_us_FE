@@ -239,7 +239,7 @@ export const KeyHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0 30px 0;
+  padding: 20px 0 ${(props) => (props.currentPage === 2 ? "10px" : "30px")} 0;
 `;
 
 export const HeaderBtn = styled.button`
@@ -424,4 +424,34 @@ export const CreateBottomContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 313px;
+`;
+
+export const FrameContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개씩 */
+  gap: 10px; /* 아이템 간격 */
+  justify-items: center; /* 아이템을 가운데 정렬 */
+  padding: 10px;
+`;
+
+export const FrameItem = styled.img`
+  width: 144px;
+  height: 256px;
+  flex-shrink: 0;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.14));
+`;
+
+export const FrameText = styled.div`
+  span {
+    display: flex;
+    justify-content: center;
+    color: var(--Gray4, #747474);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.64px;
+    margin: 15px 0;
+  }
 `;
