@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API = axios.create({ baseURL: process.env.VITE_SERVER_API });
+export const API = axios.create({ baseURL: import.meta.env.VITE_SERVER_API });
 
 const apiCall = async (url, method = "get", data = null, token = null) => {
   try {
@@ -22,7 +22,7 @@ const apiCall = async (url, method = "get", data = null, token = null) => {
       config.data = data;
     }
 
-    const response = await APISERVER(config);
+    const response = await API(config);
     return response;
   } catch (error) {
     console.error("API call error:", error);

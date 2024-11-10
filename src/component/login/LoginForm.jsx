@@ -30,7 +30,9 @@ const LoginForm = () => {
         <S.FindBtn>비밀번호 찾기</S.FindBtn>
       </S.FindBtnContainer>
       <S.ButtonContainer>
-        <Button bgColor="#417E59">로그인</Button>
+        <Button bgColor="#417E59" onClick={Login}>
+          로그인
+        </Button>
         <Button bgColor="#1A1E1B">회원가입</Button>
       </S.ButtonContainer>
     </>
