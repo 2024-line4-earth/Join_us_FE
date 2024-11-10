@@ -1,7 +1,7 @@
-// import { defineConfig } from "vite";
-// import react from "@vitejs/plugin-react";
-// import fs from "fs";
-// import path from "path";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import fs from "fs";
+import path from "path";
 
 // // 로컬호스트에서 https 실행
 // export default defineConfig({
@@ -15,7 +15,7 @@
 //   },
 // });
 
-배포 서버에서 https 실행
+// 배포 서버에서 https 실행
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
