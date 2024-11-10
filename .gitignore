@@ -26,3 +26,7 @@ package-lock.json
 
 # prettier 라는 vs코드 자동 정렬 extension 무시
 .prettierignore
+
+.env
+localhost-key.pem
+localhost.pem

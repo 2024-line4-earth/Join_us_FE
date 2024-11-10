@@ -41,8 +41,6 @@ export const PointContainer = styled.div`
 
 export const EmptyDiv = styled.div`
   background-color: #d9d9d9;
-  margin-top: 30px;
-
   width: 100%;
   height: 100px;
 `;
@@ -53,21 +51,18 @@ export const MainContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 25px;
-  background-color: red;
+  gap: 50px 25px;
   width: 100%;
-  height: 300px;
+  max-height: 58vh;
   margin-top: 200px;
   overflow-y: auto;
 `;
 
 export const CardContainer = styled.div`
-  background-color: blue;
   width: calc(50% - 12.5px);
-  height: 161px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 `;
 
 export const ImgContainer = styled.div`
@@ -79,15 +74,16 @@ export const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const MarketItemImg = styled.img`
-  /* width: 100%; */
   height: 90%;
 `;
 
 export const ItemNameContainer = styled.div`
   display: inline-flex;
+  width: fit-content;
   height: 24px;
   padding: 2px 8px;
   justify-content: center;
@@ -95,9 +91,21 @@ export const ItemNameContainer = styled.div`
   border-radius: 34px;
   border: 1px solid #e0e0e0;
   background: #fff;
+  margin-bottom: 8px;
 `;
 
-export const ItemName = styled.p`
+export const ItemPointContainer = styled.div`
+  display: inline-flex;
+  width: fit-content;
+  height: 14px;
+  padding: 2px 8px;
+  justify-content: center;
+  border-radius: 34px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+`;
+
+export const ItemName = styled.span`
   margin: 0;
   color: #2e302d;
   font-family: Pretendard;
@@ -106,7 +114,7 @@ export const ItemName = styled.p`
   font-weight: 500;
 `;
 
-export const Point = styled.p`
+export const Point = styled.span`
   color: #417e59;
   text-align: center;
   font-family: Pretendard;

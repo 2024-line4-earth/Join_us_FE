@@ -6,8 +6,8 @@ const MarketPage = () => {
   return (
     <>
       <MarketHeader />
-      <Footer />
       <MarketMain />
+      <Footer />
     </>
   );
 };
