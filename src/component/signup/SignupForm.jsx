@@ -7,12 +7,12 @@ import {
   PasswordWrapper,
   ButtonContainer,
 } from "../login/styled";
-
 import { DuplicateCheckBtn, ErrorText } from "./styled";
+import apiCall from "../../api/Api";
 
 const SignupForm = () => {
-  const [nickname, setNickname] = useState("");
   const [username, setUsername] = useState("");
+  const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isDuplicate, setIsDuplicate] = useState(null);
@@ -23,16 +23,28 @@ const SignupForm = () => {
     setIsDuplicate("green");
     console.log(formRef.current);
   };
+
   const isPasswordChecked = password === confirmPassword;
-  const isFormComplete = nickname && username && password && confirmPassword;
+  const isFormComplete = username && userId && password && confirmPassword;
+  const Register = async () => {
+    console.log("클릭됨");
+    const data = {
+      username: username,
+      userid: userId,
+      password: password,
+      password2: confirmPassword,
+    };
+    const response = await apiCall("users/register/", "POST", data, null);
+    console.log(response);
+  };
   return (
     <>
       <LoginFormContainer ref={formRef}>
         <PasswordWrapper>
           <LoginInput
             placeholder="닉네임을 입력해주세요"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             style={{ borderColor: isDuplicate }}
           ></LoginInput>
           <EyeContainer>
@@ -54,8 +66,8 @@ const SignupForm = () => {
 
         <LoginInput
           placeholder="아이디를 입력해주세요"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
         ></LoginInput>
         <LoginInput
           placeholder="비밀번호를 입력해주세요"
@@ -73,8 +85,9 @@ const SignupForm = () => {
       <ButtonContainer>
         <Button
           bgColor={isFormComplete && isPasswordChecked ? "#1A1E1B" : "#747474"}
-          type="submit"
+          type="button"
           disabled={!isFormComplete}
+          onClick={Register}
         >
           회원가입
         </Button>
