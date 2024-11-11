@@ -4,9 +4,10 @@ import styled from "styled-components";
 import SignupForm from "../component/signup/SignupForm";
 
 const Layout = styled.div`
-  width: calc(100% - 2em);
+  width: 100%;
   position: absolute;
   top: calc(50% - 253px);
+  left: 0;
 `;
 const MainLogoContainer = styled.div`
   display: flex;
