@@ -4,11 +4,12 @@ import Plus from "../../assets/img/plus.svg";
 import cameraF from "../../assets/img/cameraFrame.svg"; // 예시 파일 이름
 import GreenF from "../../assets/img/greenFrame.svg";
 import GrayF from "../../assets/img/grayframe.svg";
+import ExImg from "../../assets/img/ExImg.svg";
 
 const JoinCreateMain = ({ currentPage }) => {
   return (
     <>
-      {currentPage === 1 ? (
+      {currentPage === 1 && (
         <>
           <S.CreateMainContainer>
             <S.CreateFrame />
@@ -26,7 +27,8 @@ const JoinCreateMain = ({ currentPage }) => {
             ></S.CreateText>
           </S.CreateBottomContainer>
         </>
-      ) : (
+      )}
+      {currentPage === 2 && (
         <>
           <S.FrameContainer>
             <S.FrameItem src={cameraF} alt="camera" />
@@ -36,6 +38,13 @@ const JoinCreateMain = ({ currentPage }) => {
           <S.FrameText>
             <span>원하는 프레임을 선택해주세요.</span>
           </S.FrameText>
+        </>
+      )}
+      {currentPage === 3 && (
+        <>
+          <S.MadeImg>
+            <img src={ExImg} alt="ExImg" />
+          </S.MadeImg>
         </>
       )}
     </>
