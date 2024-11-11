@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "../component/Join/styled";
 import styled from "styled-components";
 import TextImg from "../assets/img/TextImg.svg";
@@ -21,6 +22,7 @@ const MainContainer = styled.div`
 
 const JoinExPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate(); 
 
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
@@ -28,6 +30,10 @@ const JoinExPage = () => {
 
   const goToNextPage = () => {
     setCurrentPage((prevPage) => (prevPage < 4 ? prevPage + 1 : prevPage));
+  };
+
+  const goToCreatePage = () => {
+    navigate("/create");
   };
 
   return (
@@ -109,7 +115,7 @@ const JoinExPage = () => {
             <S.Vector>
               <img src={Vector} alt="Vector Image" />
             </S.Vector>
-            <Button bgColor="#417E59">실천 카드 만들러가기</Button>
+            <Button bgColor="#417E59" onClick={goToCreatePage}>실천 카드 만들러가기</Button>
           </S.ExLastContainer>
         )}
         {currentPage < 3 && ( 
