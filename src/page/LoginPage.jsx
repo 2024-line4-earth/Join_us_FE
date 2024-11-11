@@ -4,9 +4,11 @@ import styled from "styled-components";
 import LoginForm from "../component/login/LoginForm";
 
 const Layout = styled.div`
-  width: calc(100% - 2em);
+  /* width: calc(100% - 2em); */
+  width: 100%;
   position: absolute;
   top: calc(50% - 247px);
+  left: 0;
 `;
 
 const MainLogoContainer = styled.div`
