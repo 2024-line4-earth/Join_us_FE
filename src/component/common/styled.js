@@ -46,3 +46,10 @@ export const buttonText = styled.p`
   font-size: 20px;
   line-height: normal;
 `;
+
+// Modal
+export const ModalBackground = styled.div`
+  height: calc(100vh - 78px);
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+export const ModalTextContainer = styled.img``;
