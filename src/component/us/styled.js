@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 /* UsRanking.jsx -------- */
 // Top3 Ranking
@@ -7,20 +7,18 @@ export const RankingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  width: 440px;
+  width: 100%;
 `;
 
 export const Top3Ranking = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(100% - 40px);
-  max-width: 380px;
+  gap: 23px;
 `;
 
 export const Ranking_1 = styled.div`
-  margin-left: 30px;
-  margin-top: 20px;
+  margin-top: 25px;
 `;
 
 export const Ranking_2 = styled.div`
@@ -28,17 +26,16 @@ export const Ranking_2 = styled.div`
 `;
 
 export const Ranking_3 = styled.div`
-  margin-right: 30px;
-  margin-top: 20px;
+  margin-top: 25px;
 `;
 
 export const Ranking_num = styled.div`
   top: 7px;
-  left: -14px;
+  left: -7px;
   position: relative;
-  width: 30px;
-  height: 30px;
-  border-radius: 20px;
+  width: 27px;
+  height: 27px;
+  border-radius: 90px;
   font-size: 16px;
   color: white;
   font-weight: bold;
@@ -49,15 +46,16 @@ export const Ranking_num = styled.div`
 export const Ranking_square = styled.div`
   z-index: -10;
   margin-top: -10px;
-  width: 85px;
-  height: 85px;
+  width: 80px;
+  height: 80px;
   background-color: white;
-  box-shadow: 0 0 10px 0 #b2b3b2;
-  border-radius: 20px;
+  border-radius: 24px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.14);
   text-align: center;
 `;
 export const Ranking_level_n = styled.div`
-  padding-top: 23px;
+  padding-top: 17px;
   font-size: 30px;
   font-weight: bold;
 `;
@@ -111,7 +109,7 @@ export const MyRanking_num = styled.div`
 `;
 
 export const MyRanking_name = styled.div`
-  margin-left: -160px;
+  margin-left: -30%;
   color: #2e302d;
   font-size: 17px;
   font-weight: 700;
@@ -213,7 +211,24 @@ export const LevelGraph = styled.div`
   border-radius: 34px;
   padding: 5px 12px;
   width: calc(100% - 24px);
+  display: flex;
   align-items: center;
+`;
+
+const widthAnimation = (width) => keyframes`
+  from {
+    width: 0px;
+  }
+  to {
+    width: ${width};
+  }
+`;
+
+export const LevelBar = styled.div`
+  background-color: #417e59;
+  height: 3px;
+  flex-shrink: 0;
+  animation: ${({ width }) => widthAnimation(width)} 1s ease forwards;
 `;
 
 export const LevelImg = styled.img``;
@@ -230,4 +245,5 @@ export const Level_t = styled.div`
 export const LevelLow = styled.span`
   margin-right: 280px;
 `;
+
 export const LevelHigh = styled.span``;

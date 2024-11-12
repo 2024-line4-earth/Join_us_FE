@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./styled";
-import card from "../../assets/img/card.png";
+import card from "../../assets/img/card.svg";
 import LevelGraph from "../../assets/img/LevelGraph.svg";
 
 const UsBottom = () => {
   const [myCard, setMyCard] = useState(2);
   const [point, setPoint] = useState(1000);
-  const [myLevel, setMyLevel] = useState(0);
+  const [myLevel, setMyLevel] = useState(5);
+  const [barWidth, setBarWidth] = useState("0px");
+
+  // 임시 데이터
+  const step = 1;
+
+  const stepFunc = (step) => {
+    if (step === 1) return "82px";
+    else if (step === 2) return "165px";
+    else if (step === 3) return "247px";
+    else return "330px";
+  };
+
+  useEffect(() => {
+    setBarWidth(stepFunc(step));
+  }, [step]);
 
   const myLevelPlus1 = myLevel + 1;
   return (
@@ -22,6 +37,7 @@ const UsBottom = () => {
       </S.Bottom1>
       <S.Bottom2>
         <S.LevelGraph>
+          <S.LevelBar width={barWidth} />
           <S.LevelImg src={LevelGraph} />
         </S.LevelGraph>
         <S.Level_t>
