@@ -1,5 +1,17 @@
 import styled, { keyframes } from "styled-components";
 
+/* UsHeader.jsx -------- */
+export const PageName = styled.div`
+  color: #000;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.96px;
+  width: 100%;
+`;
+
 /* UsRanking.jsx -------- */
 // Top3 Ranking
 export const RankingContainer = styled.div`
@@ -159,7 +171,7 @@ export const UsBottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 120px 0 30px 0;
+  margin: 120px 0 70px 0;
 `;
 
 export const Bottom1 = styled.div`
@@ -171,13 +183,30 @@ export const Bottom1 = styled.div`
 `;
 
 export const Card = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   border: 1px solid #e0e0e0;
   border-radius: 34px;
   padding: 4px 12px;
   align-items: center;
-  margin-right: 40px;
+  margin-right: 40px; */
+  color: var(--Gray5, #2e302d);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.64px;
+  display: inline-flex;
+  height: 24px;
+  padding: 4px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 34px;
+  border: 1px solid var(--Gray2, #e0e0e0);
+  background: var(--White, #fff);
 `;
 export const CardImg = styled.img`
   margin-right: 3px;
@@ -191,10 +220,26 @@ export const MyCard = styled.div`
   align-items: center;
 `;
 export const Point = styled.div`
-  background-color: #66a776;
+  /* background-color: #66a776;
   border-radius: 34px;
   padding: 7px 12px;
-  color: white;
+  color: white; */
+  display: inline-flex;
+  height: 24px;
+  padding: 4px 12px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 34px;
+  background: var(--Sub-color, #66a776);
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.64px;
 `;
 
 export const Bottom2 = styled.div`
@@ -207,9 +252,11 @@ export const Bottom2 = styled.div`
 
 export const LevelGraph = styled.div`
   margin-top: 10px;
+  position: relative;
   border: 1px solid #e0e0e0;
   border-radius: 34px;
-  padding: 5px 12px;
+  height: 24px;
+  padding: 4px 12px;
   width: calc(100% - 24px);
   display: flex;
   align-items: center;
@@ -234,16 +281,21 @@ export const LevelBar = styled.div`
 export const LevelImg = styled.img``;
 
 export const Level_t = styled.div`
-  margin: 5px auto 20px auto;
-  text-align: center;
+  margin-top: 5px;
   font-size: 17px;
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.68px;
+  width: 100%;
+  position: relative;
 `;
 
 export const LevelLow = styled.span`
-  margin-right: 280px;
+  position: absolute;
+  left: 7px;
 `;
 
-export const LevelHigh = styled.span``;
+export const LevelHigh = styled.span`
+  position: absolute;
+  right: 7px;
+`;
