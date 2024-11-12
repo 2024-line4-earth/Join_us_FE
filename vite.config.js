@@ -19,7 +19,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+// 로컬호스트에서 https 실행
 export default defineConfig({
   plugins: [react()],
 });
