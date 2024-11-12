@@ -45,7 +45,7 @@ const SignupForm = () => {
         alert("아이디/비밀번호를 다시 확인해주세요!");
       }
     } catch (error) {
-      console.log("에러발생");
+      console.log("에러발생s");
     }
   };
   return (
