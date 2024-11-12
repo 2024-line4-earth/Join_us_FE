@@ -57,5 +57,6 @@ body {
 	#root{
 		width:440px;
 		max-width: 440px;
+		margin: 0 auto;
 	}
 }

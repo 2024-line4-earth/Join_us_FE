@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 import {
   EyeContainer,
@@ -17,6 +18,7 @@ const SignupForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isDuplicate, setIsDuplicate] = useState(null);
   const formRef = useRef(null);
+  const navigate = useNavigate();
   const handleDuplicateCheck = () => {
     // 특정 조건에 따라 실행
     setIsDuplicate("red");
@@ -27,15 +29,24 @@ const SignupForm = () => {
   const isPasswordChecked = password === confirmPassword;
   const isFormComplete = username && userId && password && confirmPassword;
   const Register = async () => {
-    console.log("클릭됨");
     const data = {
       username: username,
       userid: userId,
       password: password,
       password2: confirmPassword,
     };
-    const response = await apiCall("users/register/", "POST", data, null);
-    console.log(response);
+    try {
+      const response = await apiCall("users/register/", "POST", data, null);
+      console.log(response);
+      if (response.data.token) {
+        localStorage.setItem("accessToken", response.data.token);
+        navigate("/join");
+      } else {
+        alert("아이디/비밀번호를 다시 확인해주세요!");
+      }
+    } catch (error) {
+      console.log("에러발생s");
+    }
   };
   return (
     <>
