@@ -3,7 +3,7 @@ import * as S from "./styled";
 import Plus from "../../assets/img/plus.svg";
 import cameraF from "../../assets/img/cameraFrame.svg"; // 예시 파일 이름
 import GreenF from "../../assets/img/greenFrame.svg";
-import GrayF from "../../assets/img/grayframe.svg";
+import GrayF from "../../assets/img/grayFrame.svg";
 import ExImg from "../../assets/img/ExImg.svg";
 
 const JoinCreateMain = ({ currentPage }) => {
