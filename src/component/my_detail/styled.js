@@ -184,7 +184,89 @@ export const Line = styled.div`
   margin: 30px auto 0;
 `;
 
-/* */
+/* MyShoppinglist.jsx */
+export const ShoppinglistMain = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 40px 25px;
+  width: 100%;
+  max-height: 58vh;
+  overflow-y: auto;
+`;
+
+export const CardContainer = styled.div`
+  width: calc(50% - 20px);
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+`;
+
+export const ImgContainer = styled.div`
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 108px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+export const MarketItemImg = styled.img`
+  height: 90%;
+`;
+
+export const ItemNameContainer = styled.div`
+  display: flex;
+  width: fit-content;
+  height: 24px;
+  padding: 2px 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 34px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  margin-bottom: 8px;
+`;
+
+export const ItemPointContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  height: 14px;
+  padding: 2px 8px;
+  justify-content: center;
+  border-radius: 34px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+`;
+
+export const ItemName = styled.span`
+  margin: 0;
+  color: #2e302d;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+`;
+
+export const Point = styled.span`
+  color: #417e59;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--Primary-color, #417e59);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+`;
 
 /* MyContect.jsx */
 export const Contect_text = styled.h2`
