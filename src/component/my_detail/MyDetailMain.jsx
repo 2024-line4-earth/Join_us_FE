@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from "react";
-import * as S from "./styled";
-import Theme from "../../assets/img/Mytheme.svg";
+import React from "react";
 import MyTheme from "./MyTheme";
 import MyShoppinglist from "./MyShoppinglist";
 import MyContect from "./MyContect";
 import MyLogout from "./MyLogout";
 import MyQuit from "./MyQuit";
+import EditMyInfo from "./EditMyInfo";
 
-const MyDetailMain = () => {
-  return (
-    <>
-      <MyQuit />
-    </> // 버튼 선택하면 화면 보이게 하는 거 여기에 추가하기 ~~
-  );
+const MyDetailMain = ({ selectedBlock }) => {
+  switch (selectedBlock) {
+    case "EditMyInfo":
+      return <EditMyInfo />;
+    case "MyTheme":
+      return <MyTheme />;
+    case "MyShoppinglist":
+      return <MyShoppinglist />;
+    case "MyContect":
+      return <MyContect />;
+    case "MyLogout":
+      return <MyLogout />;
+    case "MyQuit":
+      return <MyQuit />;
+    default:
+      return null;
+  }
 };
 
 export default MyDetailMain;

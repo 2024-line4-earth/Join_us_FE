@@ -16,13 +16,13 @@ const Layout = styled.div`
   }
 `;
 
-const MyPageDetail = () => {
+const MyPageDetail = ({ selectedBlock, setSelectedBlock }) => {
   const [view, setView] = useState("");
 
   return (
     <Layout>
-      <MyDetailHeader />
-      <MyDetailMain />
+      <MyDetailHeader setSelectedBlock={setSelectedBlock} />
+      <MyDetailMain selectedBlock={selectedBlock} />
       <Footer />
     </Layout>
   );

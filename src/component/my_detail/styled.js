@@ -188,6 +188,7 @@ export const Line = styled.div`
 
 /* MyContect.jsx */
 export const Contect_text = styled.h2`
+  margin-bottom: 25px;
   color: var(--Gray5, #2e302d);
   font-family: Pretendard;
   font-size: 20px;
