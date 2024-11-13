@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
   height: 78px;
   top: 0;
   left: 0;
-  position: fixed;
+  /* position: fixed; */
   background-color: #fff;
   z-index: 10;
 `;
@@ -39,10 +39,13 @@ export const PointContainer = styled.div`
   font-weight: 400;
 `;
 
-export const EmptyDiv = styled.div`
-  background-color: #d9d9d9;
+export const EmptyDiv = styled.img`
   width: 100%;
   height: 100px;
+  @media (width>440px) {
+    width: 440px;
+    height: 100px;
+  }
 `;
 
 // MarketMain

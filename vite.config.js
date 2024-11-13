@@ -3,7 +3,7 @@
 // import fs from "fs";
 // import path from "path";
 
-// // // 로컬호스트에서 https 실행
+// // 로컬호스트에서 https 실행
 // export default defineConfig({
 //   plugins: [react()],
 //   server: {
@@ -19,7 +19,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// 로컬호스트에서 https 실행
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
 });
