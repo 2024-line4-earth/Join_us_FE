@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   { path: "/key", element: <JoinKeyPage /> },
   { path: "/create", element: <JoinCreatePage /> },
   { path: "/market", element: <MarketPage /> },
-  { path: "/market/:id", element: <MarketDetail /> },
+  { path: "/market/detail/:id", element: <MarketDetail /> },
   { path: "/us", element: <UsPage /> },
 ]);
 

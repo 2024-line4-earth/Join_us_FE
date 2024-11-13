@@ -11,6 +11,11 @@ export const FooterContainer = styled.div`
   bottom: 0;
   left: 0;
   background-color: #1a1e1b;
+
+  @media (width>440px) {
+    width: 440px;
+    left: calc(50% - 220px);
+  }
 `;
 
 export const FooterButton = styled.button`

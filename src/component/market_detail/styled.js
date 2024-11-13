@@ -10,6 +10,11 @@ export const HeaderContainer = styled.div`
   position: fixed;
   background-color: #fff;
   z-index: 10;
+
+  @media (width> 440px) {
+    width: 440px;
+    left: calc(50% - 220px);
+  }
 `;
 export const Header = styled.div`
   padding: 20px;
