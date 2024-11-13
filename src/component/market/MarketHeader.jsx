@@ -1,4 +1,5 @@
 import React from "react";
+import banner from "../../assets/img/MarketAdvertiseBanner.png";
 import * as S from "./styled";
 const MarketHeader = () => {
   return (
@@ -7,7 +8,7 @@ const MarketHeader = () => {
         <S.HeaderText>마켓</S.HeaderText>
         <S.PointContainer>1000P</S.PointContainer>
       </S.Header>
-      <S.EmptyDiv />
+      <S.EmptyDiv src={banner} />
     </S.HeaderContainer>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import * as S from "./styled";
 import Button from "../common/Button";
 import eye from "../../assets/img/password_eye.svg";
@@ -22,6 +23,17 @@ const LoginForm = () => {
     };
     try {
       const response = await apiCall("users/login/", "post", data, null);
+      console.log(response.data);
+      // const token = response.headers["authorization"];
+      const token = response.data.token;
+
+      if (token) {
+        Cookies.set("access_token", token, {
+          path: "/",
+          secure: true,
+          sameSite: "None",
+        });
+      }
       if (response.data.token) {
         localStorage.setItem("accessToken", response.data.token);
         navigate("/join");
