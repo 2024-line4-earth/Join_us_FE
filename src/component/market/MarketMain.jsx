@@ -5,11 +5,11 @@ import Theme from "../../assets/img/Market_Item_theme_cherryblossom.png";
 import Frame1 from "../../assets/img/Market_Item_Frame_1.png";
 import Frame2 from "../../assets/img/Market_Item_Frame_2.png";
 import apiCall from "../../api/Api";
-import { getToken } from "../../../utils/auth";
 
 const MarketMain = () => {
   const [itemData, setItemData] = useState([]);
-  const token = getToken();
+  const token = Cookies.get("access_token");
+  console.log(token);
   useEffect(() => {
     console.log(token);
     const fetchData = async () => {

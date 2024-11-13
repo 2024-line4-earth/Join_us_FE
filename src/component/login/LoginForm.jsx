@@ -33,9 +33,6 @@ const LoginForm = () => {
           secure: true,
           sameSite: "None",
         });
-      }
-      if (response.data.token) {
-        localStorage.setItem("accessToken", response.data.token);
         navigate("/join");
       }
     } catch (error) {

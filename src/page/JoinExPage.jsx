@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "../component/Join/styled";
 import styled from "styled-components";
 import TextImg from "../assets/img/TextImg.svg";
@@ -11,6 +12,7 @@ import JoinHeader from "../component/Join/JoinHeader";
 import LeftBtn from "../assets/img/leftBtn.svg";
 import RightBtn from "../assets/img/rightBtn.svg";
 import preLeftBtn from "../assets/img/preLeftBtn.svg";
+import apiCall from "../api/Api";
 
 const MainContainer = styled.div`
   display: flex;
@@ -21,6 +23,22 @@ const MainContainer = styled.div`
 
 const JoinExPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [userId, setUserId] = useState(null); // 사용자 ID 상태
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    // 페이지가 로드될 때 사용자 ID와 tutorial_completed 상태 가져오기
+    const fetchTutorialStatus = async () => {
+      try {
+        const response = await apiCall("join/tutorial", "GET", null, null);
+        setUserId(response.id); // 서버로부터 받은 id 값을 저장
+      } catch (error) {
+        console.error("Error fetching tutorial status:", error);
+      }
+    };
+
+    fetchTutorialStatus();
+  }, []);
 
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
@@ -30,11 +48,32 @@ const JoinExPage = () => {
     setCurrentPage((prevPage) => (prevPage < 4 ? prevPage + 1 : prevPage));
   };
 
+  const goToCreatePage = async () => {
+    try {
+      // POST 요청을 보내 tutorial_completed 값을 true로 업데이트
+      const data = {
+        id: userId, // id 포함
+        tutorial_completed: true,
+      };
+      const response = await apiCall("join/tutorial", "POST", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      if (response) {
+        navigate("/create"); // POST 요청 성공 후 /create 페이지로 이동
+      }
+    } catch (error) {
+      console.error("Error updating tutorial status:", error);
+    }
+  };
+
   return (
     <>
       <MainContainer>
         <JoinHeader />
-        {currentPage < 3 && ( // currentPage가 3보다 작을 떄만 S.TextContainer 렌더링
+        {currentPage < 3 && (
           <S.TextContainer>
             {currentPage === 1 && (
               <>
@@ -109,13 +148,12 @@ const JoinExPage = () => {
             <S.Vector>
               <img src={Vector} alt="Vector Image" />
             </S.Vector>
-            <Button bgColor="#417E59">실천 카드 만들러가기</Button>
+            <Button bgColor="#417E59" onClick={goToCreatePage}>실천 카드 만들러가기</Button>
           </S.ExLastContainer>
         )}
         {currentPage < 3 && ( 
           <S.BtnContainer>
             <S.LeftBtnContainer onClick={goToPreviousPage}>
-              {/* currentPage가 1일 때 preLeftBtn 이미지를 사용, 그렇지 않으면 LeftBtn */}
               <img src={currentPage === 1 ? preLeftBtn : LeftBtn} alt="LeftBtn" />
             </S.LeftBtnContainer>
             <div onClick={goToNextPage}>

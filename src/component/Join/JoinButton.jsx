@@ -1,8 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./styled";
+import apiCall from "../../api/Api";
 
 const JoinButton = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0); // 현재 선택된 버튼의 인덱스
+  const [tutorialCompleted, setTutorialCompleted] = useState(null); // tutorial_completed 상태
+  const [userId, setUserId] = useState(null); // 사용자 ID 상태
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 tutorial_completed와 id 상태를 가져오기
+    const fetchTutorialStatus = async () => {
+      try {
+        const response = await apiCall("join/tutorial", "GET", null, null); // API 호출
+        setTutorialCompleted(response.tutorial_completed); // tutorial_completed 값 설정
+        setUserId(response.id); // id 값 설정
+      } catch (error) {
+        console.error("튜토리얼을 완료해야 카드 작성이 가능합니다.", error); // 에러 로그 출력
+      }
+    };
+
+    fetchTutorialStatus();
+  }, []);
 
   // 현재 월 가져오기 (0: 1월, 1: 2월, ..., 11: 12월)
   const currentMonth = new Date().getMonth();
@@ -12,9 +30,6 @@ const JoinButton = () => {
     ...Array.from({ length: 12 - currentMonth }, (_, i) => `${currentMonth + i + 1}월`),
     ...Array.from({ length: currentMonth }, (_, i) => `${i + 1}월`)
   ];
-
-  /* 첫 번째 배열: 12 - currentMonth만큼의 길이를 가지며, 
-  현재 월부터 12월까지의 월을 계산하여 문자열로 생성 */
 
   // 버튼 클릭 시 클릭된 버튼의 인덱스를 activeIndex로 설정
   const handleClick = (index) => {
@@ -29,15 +44,17 @@ const JoinButton = () => {
       >
         예시
       </S.ExButton>
-      {months.map((month, index) => (
-        <S.ExButton
-          key={index + 1}
-          isClicked={activeIndex === index + 1}
-          onClick={() => handleClick(index + 1)}
-        >
-          {month}
-        </S.ExButton>
-      ))}
+      {tutorialCompleted && 
+        months.map((month, index) => (
+          <S.ExButton
+            key={index + 1}
+            isClicked={activeIndex === index + 1}
+            onClick={() => handleClick(index + 1)}
+          >
+            {month}
+          </S.ExButton>
+        ))
+      }
     </S.ScrollContainer>
   );
 };

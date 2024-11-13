@@ -239,7 +239,7 @@ export const KeyHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0 30px 0;
+  padding: 20px 0 ${(props) => (props.currentPage > 2 ? "10px" : "30px")} 0;
 `;
 
 export const HeaderBtn = styled.button`
@@ -249,25 +249,37 @@ export const HeaderBtn = styled.button`
 `;
 
 export const Select = styled.button`
+  width: 118px;
   background-color: #f0f0f0;
   border: none;
   border-radius: 20px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 14px;
+  cursor: pointer;
+
+  span {
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
+  }
 `;
 
-export const DropdownMenu = styled.div`
+export const DropDownContainer = styled.div`
+  position: relative; 
+  display: inline-block;
+`;
+
+export const DropdownMenu = styled.div`  
   position: absolute;
-  top: 110px; /* Select 버튼 아래로 위치 조정 */
-  left: 65%;
+  left: 40%;
   transform: translateX(-50%);
+  margin-top: 5px;  /* 약간의 간격 추가 */
   padding: 8px 0;
-  z-index: 100;
   width: 98px;
   height: 132px;
   flex-shrink: 0;
+  cursor: pointer;
 
   border-radius: 16px;
   border: 1px solid var(--Gray2, #E0E0E0);
@@ -275,6 +287,7 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownItem = styled.div`
+  z-index: 1;
   padding: 3px 8px;
   text-align: center;
 
@@ -292,7 +305,7 @@ export const DropdownItem = styled.div`
 `;
 
 export const Create = styled.div`
-
+  cursor: pointer;
 `;
 
 export const HeaderRight = styled.div`
@@ -376,14 +389,16 @@ export const CreateBtn = styled.div`
 
 export const SBtn = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const CautionText = styled.div`
   display: flex;
   align-items: center;
   width: 313px;
+  margin-bottom: 4px;
   span{
     color: var(--Negative-Error-Cancel, #F66466);
     font-family: Pretendard;
@@ -424,4 +439,111 @@ export const CreateBottomContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 313px;
+`;
+
+export const FrameContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개씩 */
+  gap: 10px; /* 아이템 간격 */
+  justify-items: center; /* 아이템을 가운데 정렬 */
+  padding: 10px;
+`;
+
+export const FrameItem = styled.img`
+  width: 144px;
+  height: 256px;
+  flex-shrink: 0;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.14));
+`;
+
+export const FrameText = styled.div`
+  span {
+    display: flex;
+    justify-content: center;
+    color: var(--Gray4, #747474);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.64px;
+    margin: 15px 0;
+  }
+`;
+
+export const MadeImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+export const BackContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 313px;
+  cursor: pointer;
+`;
+
+export const BackJoin = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: fit-content;
+  padding: 4px 12px;
+  gap: 8px;
+
+  border-radius: 34px;
+  border: 1px solid var(--Gray2, #E0E0E0);
+  background: var(--Gray1, #F1F1F1);
+
+  span {
+    color: var(--Gray5, #2E302D);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: -0.64px;
+  }
+`;
+
+export const SaveImg = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  span {
+    border-radius: 34px;
+    background: #DADADA;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: -0.68px;
+    padding: 2px 8px;
+  }
+`;
+
+export const Insta = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 15px 0 15px 0;
+
+  span {
+    border-radius: 34px;
+    background: #DADADA;
+    color: #000;
+    font-family: Pretendard;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: -0.68px;
+    padding: 2px 8px;
+  }
 `;
