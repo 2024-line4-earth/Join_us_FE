@@ -1,6 +1,5 @@
-// src/component/us/UsRanking.jsx
 import React, { useState } from "react";
-import * as S from "./styled"; // styled.js 파일을 import
+import * as S from "./styled";
 
 const UsRanking = () => {
   const [myRanking, setMyRanking] = useState(50);
