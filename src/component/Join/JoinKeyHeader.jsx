@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 import LeftBtn from '../../assets/img/leftBtn.svg';
 import down from '../../assets/img/down.svg';
 import create from '../../assets/img/create.svg';
+import apiCall from "../../api/Api";
 
 const JoinKeyHeader = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const [selectedKeyword, setSelectedKeyword] = useState("키워드 선택");
+  const [tutorialCompleted, setTutorialCompleted] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchTutorialStatus = async () => {
+      try {
+        const response = await apiCall("join/tutorial", "GET", null, null);
+        setTutorialCompleted(response.tutorial_completed);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchTutorialStatus();
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -16,6 +32,14 @@ const JoinKeyHeader = () => {
   const handleSelectKeyword = (keyword) => {
     setSelectedKeyword(keyword);
     setIsDropdownOpen(false); 
+  };
+
+  const handleCreateClick = () => {
+    if (tutorialCompleted) {
+      navigate("/create");
+    } else {
+      alert("튜토리얼을 완료해야 카드 작성이 가능합니다.");
+    }
   };
 
   return ( 
@@ -29,7 +53,7 @@ const JoinKeyHeader = () => {
             <S.Select onClick={toggleDropdown}>
               <span>{selectedKeyword}</span> <img src={down} alt="down toggle"/>
             </S.Select>
-            <S.Create>
+            <S.Create onClick={handleCreateClick}>
               <img src={create} alt="create btn" />
             </S.Create>
           </S.HeaderRight>

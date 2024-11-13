@@ -280,6 +280,7 @@ export const DropdownMenu = styled.div`
   height: 132px;
   flex-shrink: 0;
   cursor: pointer;
+  z-index: 2;
 
   border-radius: 16px;
   border: 1px solid var(--Gray2, #E0E0E0);
@@ -317,7 +318,6 @@ export const KeyMainContainer = styled.div`
   display: flex;
   flex-wrap: wrap; /* 아이템을 여러 줄에 걸쳐 배치 */
   overflow-y: auto;
-  height: 100vh;
   padding: 16px;
   gap: 16px; /* 카드 간격 설정 */
   scrollbar-width: none; // 스크롤바 숨기기
@@ -547,3 +547,13 @@ export const Insta = styled.div`
     padding: 2px 8px;
   }
 `;
+
+export const UploadedImg = styled.img`
+  width: 269px;
+  height: 478px;
+  object-fit: cover; /* 이미지가 프레임을 꽉 채우도록 설정 */
+  border-radius: 8px; /* CreateFrame과 동일하게 설정 */
+  position: absolute; /* CreateFrame과 동일한 위치에 이미지 배치 */
+  z-index: 1; /* CreateFrame과 동일한 z-index 설정 */
+`;
+

@@ -8,6 +8,15 @@ import JoinHeader from "../component/Join/JoinHeader";
 import JoinButton from "../component/Join/JoinButton";
 import apiCall from "../api/Api";
 
+const Layout = styled.div`
+  /* width: calc(100% - 2em); */
+  width: 100%;
+  position: relative;
+  max-height : calc(100vh);
+  overflow-y : auto;
+  left: 0;
+`;
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,17 +76,19 @@ const JoinPage = () => {
 
   return (
     <>
-      <MainContainer>
-        <JoinHeader />
-        <JoinMainForm />
-        <Text>
-          카드를 <span>클릭해</span> 이번달 실천카드를 확인해보세요!
-        </Text>
-        <JoinButton userId={userId} tutorialCompleted={tutorialCompleted} />
-        <Button bgColor="#1A1E1B" onClick={handleButtonClick}>
-          실천 카드 만들러가기
-        </Button>
-      </MainContainer>
+      <Layout>
+        <MainContainer>
+          <JoinHeader />
+          <JoinMainForm />
+          <Text>
+            카드를 <span>클릭해</span> 이번달 실천카드를 확인해보세요!
+          </Text>
+          <JoinButton userId={userId} tutorialCompleted={tutorialCompleted} />
+          <Button bgColor="#1A1E1B" onClick={handleButtonClick}>
+            실천 카드 만들러가기
+          </Button>
+        </MainContainer>
+      </Layout>
       <Footer />
     </>
   );
