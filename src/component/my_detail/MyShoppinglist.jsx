@@ -1,30 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 import Shoppinglist from "../../assets/img/MyShoppinglist.svg";
+import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 const MyShoppinglist = () => {
-  // 테스트용 더미 데이터
-  const dummyItemData = [
-    {
-      id: 1,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "상품 1",
-      item_price: "1000 포인트",
-    },
-    {
-      id: 2,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "상품 2",
-      item_price: "2000 포인트",
-    },
-    {
-      id: 3,
-      item_image: "https://via.placeholder.com/150",
-      item_name: "상품 3",
-      item_price: "3000 포인트",
-    },
-  ];
+  const [itemData, setItemData] = useState([]);
+  const token = Cookies.get("access_token");
+  useEffect(() => {
+    console.log(token);
+    const fetchData = async () => {
+      try {
+        const response = await apiCall(
+          "/users/order_detail",
+          "GET",
+          null,
+          token
+        );
+        console.log(response.data.item);
+        setItemData(response.data.item);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <S.Container>
@@ -33,7 +34,7 @@ const MyShoppinglist = () => {
         구매목록
       </S.Blocks>
       <S.ShoppinglistMain>
-        {dummyItemData.map((item, index) => (
+        {itemData.map((item, index) => (
           <S.CardContainer key={index}>
             <Link to={`/market/detail/${item.id}`}>
               <S.ImgContainer>

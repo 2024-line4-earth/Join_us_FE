@@ -1,16 +1,18 @@
 import React from "react";
 import * as S from "./styled";
-import back from "../../assets/img/leftBtn.svg";
+import Backbtn from "../../assets/img/leftBtn.svg";
 
-const MyDetailHeader = ({ setSelectedBlock }) => {
+const MyDetailHeader = ({ onBack }) => {
   return (
     <>
       <S.Header>
         <S.BackBtn
-          alt="back"
-          src={back}
-          onClick={() => setSelectedBlock(null)}
-        ></S.BackBtn>
+          alt="Backbtn"
+          src={Backbtn}
+          onClick={() => {
+            onBack;
+          }}
+        />
       </S.Header>
     </>
   );

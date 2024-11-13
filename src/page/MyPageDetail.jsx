@@ -17,11 +17,14 @@ const Layout = styled.div`
 `;
 
 const MyPageDetail = ({ selectedBlock, setSelectedBlock }) => {
-  const [view, setView] = useState("");
+  const handleBack = () => {
+    setSelectedBlock(null);
+    localStorage.removeItem("selectedBlock");
+  };
 
   return (
     <Layout>
-      <MyDetailHeader setSelectedBlock={setSelectedBlock} />
+      <MyDetailHeader onBack={handleBack} />
       <MyDetailMain selectedBlock={selectedBlock} />
       <Footer />
     </Layout>

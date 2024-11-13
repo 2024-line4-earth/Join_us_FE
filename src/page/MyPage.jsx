@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../component/common/Footer";
 import MyHeader from "../component/my/MyHeader";
@@ -18,7 +18,13 @@ const Layout = styled.div`
 `;
 
 const MyPage = () => {
-  const [selectedBlock, setSelectedBlock] = useState(null);
+  const [selectedBlock, setSelectedBlock] = useState(() => {
+    return localStorage.getItem("selectedBlock") || null;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selectedBlock", selectedBlock);
+  }, [selectedBlock]);
 
   if (selectedBlock) {
     return (
@@ -28,6 +34,7 @@ const MyPage = () => {
       />
     );
   }
+
   return (
     <Layout>
       <MyHeader />
