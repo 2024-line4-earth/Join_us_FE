@@ -10,6 +10,8 @@ import JoinCreatePage from "./page/JoinCreatePage";
 import MarketPage from "./page/MarketPage";
 import MarketDetail from "./page/MarketDetail";
 import UsPage from "./page/UsPage";
+import MyPage from "./page/myPage";
+import MyPageDetail from "./page/MyPageDetail";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -22,6 +24,8 @@ const router = createBrowserRouter([
   { path: "/market", element: <MarketPage /> },
   { path: "/market/:id", element: <MarketDetail /> },
   { path: "/us", element: <UsPage /> },
+  { path: "/my", element: <MyPage /> },
+  { path: "/myInfo", element: <MyPageDetail /> },
 ]);
 
 export default router;
