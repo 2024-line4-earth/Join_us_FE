@@ -43,7 +43,7 @@ export const BolckImg = styled.img`
   margin-right: 10px;
 `;
 
-export const Line = styled.line`
+export const Line = styled.div`
   width: 393px;
   height: 1px;
   background: #e0e0e0;

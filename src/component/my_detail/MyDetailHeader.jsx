@@ -1,16 +1,15 @@
 import React from "react";
 import * as S from "./styled";
-import back from "../../assets/img/leftBtn.svg";
+import Backbtn from "../../assets/img/leftBtn.svg";
+import { Link } from "react-router-dom";
 
-const MyDetailHeader = ({ setSelectedBlock }) => {
+const MyDetailHeader = () => {
   return (
     <>
       <S.Header>
-        <S.BackBtn
-          alt="back"
-          src={back}
-          onClick={() => setSelectedBlock(null)}
-        ></S.BackBtn>
+        <Link to="/my">
+          <S.BackBtn alt="Backbtn" src={Backbtn} />
+        </Link>
       </S.Header>
     </>
   );
