@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from "../component/common/Footer";
 import MyHeader from "../component/my/MyHeader";
 import MyBlocks from "../component/my/MyBlocks";
-import MyPageDetail from "./MyPageDetail";
+// import MyPageDetail from "./MyPageDetail";
 
 const Layout = styled.div`
   font-family: Pretendard;
@@ -18,27 +18,29 @@ const Layout = styled.div`
 `;
 
 const MyPage = () => {
-  const [selectedBlock, setSelectedBlock] = useState(() => {
-    return localStorage.getItem("selectedBlock") || null;
-  });
+  // const [selectedBlock, setSelectedBlock] = useState(() => {
+  //   return localStorage.getItem("selectedBlock") || null;
+  // });
 
-  useEffect(() => {
-    localStorage.setItem("selectedBlock", selectedBlock);
-  }, [selectedBlock]);
+  // useEffect(() => {
+  //   localStorage.setItem("selectedBlock", selectedBlock);
+  // }, [selectedBlock]);
 
-  if (selectedBlock) {
-    return (
-      <MyPageDetail
-        selectedBlock={selectedBlock}
-        setSelectedBlock={setSelectedBlock}
-      />
-    );
-  }
+  // if (selectedBlock) {
+  //   return (
+  //     <MyPageDetail
+  //       selectedBlock={selectedBlock}
+  //       setSelectedBlock={setSelectedBlock}
+  //     />
+  //   );
+  // }
 
   return (
     <Layout>
       <MyHeader />
-      <MyBlocks setSelectedBlock={setSelectedBlock} />
+      <MyBlocks
+      // setSelectedBlock={setSelectedBlock}
+      />
       <Footer />
     </Layout>
   );

@@ -70,15 +70,13 @@ export const GrayBox = styled.div`
 `;
 
 /* EditMyInfo */
-export const EditMain = styled.form``;
+export const EditMain = styled.div``;
 export const EditBox = styled.div`
-  margin: 36px 0;
-  width: 353px;
+  margin: 36px auto;
+  width: calc(100% - 50px);
   height: 244px;
-  flex-shrink: 0;
   border-radius: 8px;
   background: var(--Gray1, #f1f1f1);
-  align-items: center;
   padding: 24px;
 `;
 
@@ -110,9 +108,11 @@ export const Username_current = styled.div`
   letter-spacing: -0.8px;
 `;
 export const Username_input = styled.input`
+  outline: none;
   display: inline-flex;
   margin: 16px 0 5px 0;
-  width: 85px;
+  min-width: 30px;
+  max-width: 85px;
   padding: 8px 16px;
   justify-content: center;
   align-items: center;

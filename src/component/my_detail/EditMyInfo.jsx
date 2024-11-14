@@ -28,23 +28,19 @@ const EditMyInfo = () => {
   };
 
   // 변경할 new 닉네임
-  useEffect(() => {
-    if (newUsername) {
-      setIsDuplication(false);
-      setErrorMessage("");
-    }
-  }, [newUsername]);
-
   const handleSave = async () => {
     if (!newUsername) {
       setErrorMessage("변경할 닉네임을 입력해주세요.");
       return;
     }
+    if (currentUsername == newUsername) {
+      setErrorMessage("현재 닉네임과 같습니다.");
+    }
 
     setIsLoading(true);
     try {
       const response = await apiCall(
-        "users/profile/update",
+        "users/profile/update/",
         "PATCH",
         { username: newUsername },
         token
@@ -53,7 +49,7 @@ const EditMyInfo = () => {
       if (response.data.username === newUsername) {
         setCurrentUsername(newUsername);
         setNewUsername("");
-        alert("닉네임이 성공적으로 변경되었습니다.");
+        alert("닉네임이 성공적으로 변경되었습니다 🪄");
       }
     } catch (error) {
       console.error("Error during save:", error);
@@ -93,9 +89,15 @@ const EditMyInfo = () => {
           )}
         </S.EditBox>
         <S.SaveBox>
-          <Button bgColor="#000" onClick={handleSave} disabled={isLoading}>
-            {isLoading ? "저장 중..." : "저장하기"}
-          </Button>
+          {isLoading || !newUsername ? (
+            <Button bgColor="#747474" disabled={isLoading}>
+              {isLoading ? "저장 중..." : "저장하기"}
+            </Button>
+          ) : (
+            <Button bgColor="#000" onClick={handleSave} disabled={isLoading}>
+              저장하기
+            </Button>
+          )}
         </S.SaveBox>
       </S.EditMain>
     </S.Container>

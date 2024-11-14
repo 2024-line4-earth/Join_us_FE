@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const MyShoppinglist = () => {
   const [itemData, setItemData] = useState([]);
   const token = Cookies.get("access_token");
+
   useEffect(() => {
     console.log(token);
     const fetchData = async () => {
@@ -18,14 +19,14 @@ const MyShoppinglist = () => {
           null,
           token
         );
-        console.log(response.data.item);
-        setItemData(response.data.item);
+        // console.log(response.data);
+        setItemData(response.data || []);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [token]);
 
   return (
     <S.Container>
@@ -34,21 +35,28 @@ const MyShoppinglist = () => {
         구매목록
       </S.Blocks>
       <S.ShoppinglistMain>
-        {itemData.map((item, index) => (
-          <S.CardContainer key={index}>
-            <Link to={`/market/detail/${item.id}`}>
-              <S.ImgContainer>
-                <S.MarketItemImg src={item.item_image} alt={item.item_name} />
-              </S.ImgContainer>
-              <S.ItemNameContainer>
-                <S.ItemName>{item.item_name}</S.ItemName>
-              </S.ItemNameContainer>
-              <S.ItemPointContainer>
-                <S.Point>{item.item_price}</S.Point>
-              </S.ItemPointContainer>
-            </Link>
-          </S.CardContainer>
-        ))}
+        {itemData.length > 0 ? (
+          itemData.map((item, index) => (
+            <S.CardContainer key={index}>
+              <Link
+                to={`/market/detail/${item.item}`}
+                style={{ textDecoration: "none" }}
+              >
+                <S.ImgContainer>
+                  <S.MarketItemImg src={item.item_image} alt={item.item_name} />
+                </S.ImgContainer>
+                <S.ItemNameContainer>
+                  <S.ItemName>{item.item_name}</S.ItemName>
+                </S.ItemNameContainer>
+                <S.ItemPointContainer>
+                  <S.Point>{item.price}</S.Point>
+                </S.ItemPointContainer>
+              </Link>
+            </S.CardContainer>
+          ))
+        ) : (
+          <S.Quit_Warning>구매한 아이템이 없습니다.</S.Quit_Warning>
+        )}
       </S.ShoppinglistMain>
     </S.Container>
   );

@@ -1,18 +1,15 @@
 import React from "react";
 import * as S from "./styled";
 import Backbtn from "../../assets/img/leftBtn.svg";
+import { Link } from "react-router-dom";
 
-const MyDetailHeader = ({ onBack }) => {
+const MyDetailHeader = () => {
   return (
     <>
       <S.Header>
-        <S.BackBtn
-          alt="Backbtn"
-          src={Backbtn}
-          onClick={() => {
-            onBack;
-          }}
-        />
+        <Link to="/my">
+          <S.BackBtn alt="Backbtn" src={Backbtn} />
+        </Link>
       </S.Header>
     </>
   );
