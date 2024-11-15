@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // 연동 시 useEffect 추가
+import React, { useState } from "react";
 import * as S from "./styled";
 import firstLevel from "../../assets/img/firstLevel.svg";
 import step1 from "../../assets/img/step1.svg";

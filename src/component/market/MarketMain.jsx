@@ -12,6 +12,7 @@ const MarketMain = () => {
       try {
         const response = await apiCall("/market/market", "GET", null, token);
         console.log(response.data);
+        console.log(response.data.item);
         setItemData(response.data.item);
       } catch (error) {
         console.log(error);

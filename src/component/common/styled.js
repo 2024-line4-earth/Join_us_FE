@@ -43,6 +43,7 @@ export const commonButton = styled.button`
   border-radius: 94px;
   border: 0;
   background-color: ${(props) => props.bgColor || "#333"};
+  cursor: pointer;
 `;
 
 export const buttonText = styled.p`

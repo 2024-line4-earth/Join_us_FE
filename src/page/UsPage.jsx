@@ -1,7 +1,7 @@
-// src/page/UsPage.jsx
 import React from "react";
 import styled from "styled-components";
 import Footer from "../component/common/Footer";
+import UsHeader from "../component/us/UsHeader";
 import UsRanking from "../component/us/UsRanking";
 import UsLevel from "../component/us/UsLevel";
 import UsBottom from "../component/us/UsBottom";
@@ -18,18 +18,10 @@ const Layout = styled.div`
   }
 `;
 
-const PageName = styled.div`
-  // 조인, 마켓 페이지의 이름 위치로 수정
-  margin-left: 30px;
-  color: black;
-  font-weight: bold;
-  font-size: 25px;
-`;
-
 const UsPage = () => {
   return (
     <Layout>
-      <PageName>어스</PageName>
+      <UsHeader />
       <UsRanking />
       <UsLevel />
       <UsBottom />
