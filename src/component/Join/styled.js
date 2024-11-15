@@ -332,8 +332,8 @@ export const KeyMainContainer = styled.div`
   }
 
   /* 홀수 개의 이미지일 때 마지막 이미지를 첫 번째 열 아래로 배치 */
-  & > :nth-child(3n + 1):last-child {
-    grid-column: 1 / -1; /* 마지막 이미지가 두 열 전체를 차지하도록 설정 */
+  & > :nth-child(odd):last-child {
+    grid-column: span 2; 
   }
 `;
 
