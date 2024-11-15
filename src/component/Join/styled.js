@@ -321,18 +321,26 @@ export const HeaderRight = styled.div`
 `;
 
 export const KeyMainContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap; /* 아이템을 여러 줄에 걸쳐 배치 */
-  overflow-y: auto;
-  padding: 0px 16px 16px 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 두 열로 구성 */
   gap: 16px; /* 카드 간격 설정 */
-  scrollbar-width: none; // 스크롤바 숨기기
+  padding: 0px 16px 16px 16px;
+  overflow-y: auto;
+  scrollbar-width: none; /* 스크롤바 숨기기 */
   ::-webkit-scrollbar {
     display: none; /* 스크롤바 숨기기 */
+  }
+
+  /* 홀수 개의 이미지일 때 마지막 이미지를 첫 번째 열 아래로 배치 */
+  & > :nth-child(3n + 1):last-child {
+    grid-column: 1 / -1; /* 마지막 이미지가 두 열 전체를 차지하도록 설정 */
   }
 `;
 
 export const ImageCard = styled.div`
+  width: 144px;
+  height: 256px;
+  flex-shrink: 0;
   flex: 1 1 calc(50% - 16px); /* 한 줄에 두 개씩 배치되도록 너비 설정 */
   display: flex;
   flex-direction: column;
@@ -340,9 +348,12 @@ export const ImageCard = styled.div`
   margin-bottom: 16px;
   
   img {
-    width: 100%;
+    width: 144px;
+    height: 256px;
+    flex-shrink: 0;
+    /* width: 100%;
     max-width: 300px;
-    height: auto;
+    height: auto; */
   }
 `;
 
