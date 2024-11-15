@@ -3,6 +3,7 @@ import * as S from "./styled";
 import Button from "../common/Button";
 import Cookies from "js-cookie";
 import apiCall from "../../api/Api";
+import axios from "axios";
 const MarketItemMain = () => {
   const [detailData, setDetailData] = useState([]);
   const token = Cookies.get("access_token");
@@ -30,7 +31,25 @@ const MarketItemMain = () => {
   };
   const download = async () => {
     try {
-      await apiCall(`market/item/download/${goods_id}/`, "get", null, token);
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_API}market/item/download/${goods_id}/`,
+        {
+          headers: {
+            Authorization: `token ${token}`,
+            "Content-Type": "image/png",
+          },
+          responseType: "blob",
+        }
+      );
+      const blob = response.data;
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "downloaded_image.png";
+      a.click();
+
+      URL.revokeObjectURL(url);
     } catch (e) {
       console.log(e);
     }

@@ -120,6 +120,9 @@ section {
 body {
   line-height: 1;
 }
+button{
+  cursor: pointer;
+}
 ol,
 ul {
   list-style: none;
