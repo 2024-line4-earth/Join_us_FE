@@ -12,7 +12,7 @@ export const FooterContainer = styled.div`
   left: 0;
   background-color: #1a1e1b;
 
-  @media (width>440px) {
+  @media (width > 440px) {
     width: 440px;
     left: calc(50% - 220px);
   }
@@ -25,15 +25,19 @@ export const FooterButton = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  align-content: center;
+  align-items: center; /* 가운데 정렬을 위해 추가 */
+  cursor: pointer;
+`;
+
+export const FooterImg = styled.img`
+  margin-bottom: 5px; /* 이미지와 텍스트 간의 간격 추가 */
 `;
 
 export const FooterP = styled.p`
-  color: #fff;
   font-family: Pretendard;
   font-size: 12px;
   font-weight: 400;
+  text-align: center;
 `;
 
 // Button.jsx
