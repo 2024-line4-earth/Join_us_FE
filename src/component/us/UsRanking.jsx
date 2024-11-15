@@ -26,7 +26,6 @@ const UsRanking = () => {
     try {
       // us 조회 API 호출 (GET 요청)
       const response = await apiCall("us/us/", "GET", null, token);
-      console.log("랭킹 조회 api 응답", response);
 
       const { my_rank, my, top_users } = response.data;
 

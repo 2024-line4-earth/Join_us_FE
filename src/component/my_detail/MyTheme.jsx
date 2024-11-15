@@ -50,12 +50,6 @@ const MyTheme = () => {
       }
 
       setThemeList(response.data);
-
-      console.log(
-        "현재 테마:",
-        selectedTheme ? selectedTheme.theme_name : "없음"
-      );
-      console.log("테마 조회 api 응답", response);
     } catch (error) {
       console.error("조회 실패:", error);
       alert("조회에 실패했습니다. 다시 시도해주세요. ");
@@ -85,8 +79,6 @@ const MyTheme = () => {
         { selected_theme: myTheme },
         token
       );
-      console.log("테마 변경 API응답:", response);
-      console.log("변경된 테마:", myTheme);
 
       // 서버에서 최신 데이터를 가져오기
       await checkTheme();

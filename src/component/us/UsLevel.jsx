@@ -34,7 +34,6 @@ const UsLevel = () => {
     try {
       // us 조회 API 호출 (GET 요청)
       const response = await apiCall("us/us/", "GET", null, token);
-      console.log("가운데 level 조회 api 응답", response);
 
       const { current_theme, my } = response.data;
 

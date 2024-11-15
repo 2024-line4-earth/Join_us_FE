@@ -45,7 +45,7 @@ const EditMyInfo = () => {
         { username: newUsername },
         token
       );
-      console.log("API Response:", response);
+
       if (response.data.username === newUsername) {
         setCurrentUsername(newUsername);
         setNewUsername("");

@@ -10,7 +10,6 @@ const MyShoppinglist = () => {
   const token = Cookies.get("access_token");
 
   useEffect(() => {
-    console.log(token);
     const fetchData = async () => {
       try {
         const response = await apiCall(
@@ -19,7 +18,6 @@ const MyShoppinglist = () => {
           null,
           token
         );
-        // console.log(response.data);
         setItemData(response.data || []);
       } catch (error) {
         console.log(error);
