@@ -4,6 +4,7 @@ import styled from "styled-components";
 import JoinKeyHeader from "../component/Join/JoinKeyHeader";
 import Footer from "../component/common/Footer";
 import JoinKeyMain from "../component/Join/JoinKeyMain";
+import { useLocation } from "react-router-dom"; // useLocation import 추가
 
 const MainContainer = styled.div`
   display: flex;
@@ -28,16 +29,19 @@ const ScrollContainer = styled.div`
 `;
 
 const JoinKeyPage = () => {
+  const location = useLocation();
+  const month = location.state?.month || "월 선택 안 됨"; // 전달된 month 값이 없으면 기본 메시지 표시
+
   return (
     <>
       <Layout>
         <MainContainer>
           <JoinKeyHeader />
           <S.KeyTextContainer>
-            <span>2024.8</span>
+            <span>{`2024.${month}`}</span>
           </S.KeyTextContainer>
           <ScrollContainer>
-            <JoinKeyMain />
+            <JoinKeyMain month={month}/>
           </ScrollContainer>
         </MainContainer>
         <Footer />
