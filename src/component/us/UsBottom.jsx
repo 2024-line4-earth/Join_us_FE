@@ -2,26 +2,56 @@ import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 import card from "../../assets/img/card.svg";
 import LevelGraph from "../../assets/img/LevelGraph.svg";
+import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
 
 const UsBottom = () => {
-  const [myCard, setMyCard] = useState(2);
-  const [point, setPoint] = useState(1000);
-  const [myLevel, setMyLevel] = useState(5);
-  const [barWidth, setBarWidth] = useState("0px");
+  const [myCard, setMyCard] = useState();
+  const [point, setPoint] = useState();
+  const [myLevel, setMyLevel] = useState();
+  const [barWidth, setBarWidth] = useState("");
+  const [myStep, setMyStep] = useState();
+  const token = Cookies.get("access_token");
 
-  // 임시 데이터
-  const step = 1;
-
-  const stepFunc = (step) => {
-    if (step === 1) return "82px";
-    else if (step === 2) return "165px";
-    else if (step === 3) return "247px";
-    else return "330px";
+  const stepFunc = (myStep) => {
+    if (myStep === 1) return "23%";
+    else if (myStep === 2) return "48%";
+    else if (myStep === 3) return "71%";
+    else return "95%";
   };
 
   useEffect(() => {
-    setBarWidth(stepFunc(step));
-  }, [step]);
+    setBarWidth(stepFunc(myStep));
+  }, [myStep]);
+
+  useEffect(() => {
+    // 처음 컴포넌트가 마운트 될 때 step 조회
+    getUs();
+  }, []);
+
+  // us 조회 함수
+  const getUs = async () => {
+    if (!token) {
+      alert("로그인 정보가 없습니다.");
+      return;
+    }
+
+    try {
+      // us 조회 API 호출 (GET 요청)
+      const response = await apiCall("us/us/", "GET", null, token);
+      console.log("가운데 level 조회 api 응답", response);
+
+      const { my } = response.data;
+
+      setMyCard(my.total_cards);
+      setPoint(my.points);
+      setMyLevel(my.level);
+      setMyStep(my.step);
+    } catch (error) {
+      console.error("bottom 조회 실패:", error);
+      alert("bottom 조회에 실패했습니다. 다시 시도해주세요. ");
+    }
+  };
 
   const myLevelPlus1 = myLevel + 1;
   return (
