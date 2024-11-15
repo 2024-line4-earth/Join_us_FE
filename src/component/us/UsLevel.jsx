@@ -11,12 +11,14 @@ import step3Pink from "../../assets/img/step3Pink.svg";
 import step4Pink from "../../assets/img/step4Pink.svg";
 import apiCall from "../../api/Api";
 import Cookies from "js-cookie";
+import Loading from "../Loading/Loading";
 
 const UsLevel = () => {
   const [myCard, setMyCard] = useState();
   const [myLevel, setMyLevel] = useState();
   const [myStep, setMyStep] = useState();
   const [currentTheme, setCurrentTheme] = useState();
+  const [loading, setLoading] = useState(false);
   const token = Cookies.get("access_token");
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const UsLevel = () => {
     }
 
     try {
+      setLoading(true);
       // us 조회 API 호출 (GET 요청)
       const response = await apiCall("us/us/", "GET", null, token);
 
@@ -41,6 +44,10 @@ const UsLevel = () => {
       setMyCard(my.total_cards);
       setMyLevel(my.level);
       setMyStep(my.step);
+
+      if (response.data) {
+        setLoading(false);
+      }
     } catch (error) {
       console.error("가운데 level 조회 실패:", error);
       alert("가운데 level 조회에 실패했습니다. 다시 시도해주세요. ");
@@ -59,12 +66,15 @@ const UsLevel = () => {
   };
 
   return (
-    <S.Level>
-      <S.LevelImage src={getStepImage()} />
-      <S.LevelCircle>
-        Lv. <S.MyLevel>{myLevel}</S.MyLevel>
-      </S.LevelCircle>
-    </S.Level>
+    <>
+      <div>{loading ? <Loading /> : null}</div>
+      <S.Level>
+        <S.LevelImage src={getStepImage()} />
+        <S.LevelCircle>
+          Lv. <S.MyLevel>{myLevel}</S.MyLevel>
+        </S.LevelCircle>
+      </S.Level>
+    </>
   );
 };
 

@@ -41,9 +41,9 @@ const UsRanking = () => {
 
   // 2위 - 1위 - 3위 순으로 변경
   const reorderedTopUsers = [
-    topUsers[1] || { level: "N/A", username: "N/A" },
-    topUsers[0] || { level: "N/A", username: "N/A" },
-    topUsers[2] || { level: "N/A", username: "N/A" },
+    topUsers[1] || { level: "-", username: "" },
+    topUsers[0] || { level: "-", username: "" },
+    topUsers[2] || { level: "-", username: "" },
   ];
 
   return (

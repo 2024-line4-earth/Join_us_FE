@@ -10,6 +10,7 @@ import SelectImg from "../../assets/img/MySelectImg.svg";
 import NonSelectImg from "../../assets/img/MyNonSelectImg.svg";
 import apiCall from "../../api/Api";
 import Cookies from "js-cookie";
+import Loading from "../Loading/Loading";
 
 const MyTheme = () => {
   const [myTheme, setMyTheme] = useState("");
@@ -82,7 +83,6 @@ const MyTheme = () => {
 
       // 서버에서 최신 데이터를 가져오기
       await checkTheme();
-      alert("테마가 변경되었습니다. 🪄");
     } catch (error) {
       console.error("변경 실패:", error);
       alert("변경에 실패했습니다. 다시 시도해주세요. ");
@@ -92,57 +92,60 @@ const MyTheme = () => {
   };
 
   return (
-    <S.Container>
-      <S.Blocks>
-        <S.BolckImg src={Theme} />
-        어스테마 바꾸기
-      </S.Blocks>
-      <S.ThemeMain>
-        <S.ThemeBox alt="기본 테마 Box">
-          <S.ThemeImg src={BasicThemeImg} />
-          <S.ThemeTextBox>
-            <S.ThemeText>
-              <S.ThemeText_img src={My1} /> 기본 테마
-            </S.ThemeText>
-            <S.ThemeSelectBtn_img
-              src={myTheme === "기본 테마" ? SelectImg : NonSelectImg}
-              onClick={() => handleThemeSelection("기본 테마")}
-            />
-          </S.ThemeTextBox>
-        </S.ThemeBox>
-        <S.Line />
-        {/* 테마 목록이 2개 이상 있을 때만 벚꽃 테마 박스 렌더링 */}
-        {themeList.length > 1 && (
-          <S.ThemeBox alt="어스 벚꽃테마 Box">
-            <S.ThemeImg src={PinkThemeImg} />
+    <>
+      <div>{isChangeLoading || isCheckLoading ? <Loading /> : null}</div>
+      <S.Container>
+        <S.Blocks>
+          <S.BolckImg src={Theme} />
+          어스테마 바꾸기
+        </S.Blocks>
+        <S.ThemeMain>
+          <S.ThemeBox alt="기본 테마 Box">
+            <S.ThemeImg src={BasicThemeImg} />
             <S.ThemeTextBox>
               <S.ThemeText>
-                <S.ThemeText_img src={My2} /> 벚꽃 테마
+                <S.ThemeText_img src={My1} /> 기본 테마
               </S.ThemeText>
               <S.ThemeSelectBtn_img
-                src={myTheme === "어스 벚꽃테마" ? SelectImg : NonSelectImg}
-                onClick={() => handleThemeSelection("어스 벚꽃테마")}
+                src={myTheme === "기본 테마" ? SelectImg : NonSelectImg}
+                onClick={() => handleThemeSelection("기본 테마")}
               />
             </S.ThemeTextBox>
           </S.ThemeBox>
-        )}
-      </S.ThemeMain>
-      <S.SaveBox>
-        {isChangeLoading ? (
-          <Button bgColor="#747474" disabled={isChangeLoading}>
-            저장 중...
-          </Button>
-        ) : (
-          <Button
-            bgColor="#000"
-            onClick={changeTheme}
-            disabled={isChangeLoading}
-          >
-            저장하기
-          </Button>
-        )}
-      </S.SaveBox>
-    </S.Container>
+          <S.Line />
+          {/* 테마 목록이 2개 이상 있을 때만 벚꽃 테마 박스 렌더링 */}
+          {themeList.length > 1 && (
+            <S.ThemeBox alt="어스 벚꽃테마 Box">
+              <S.ThemeImg src={PinkThemeImg} />
+              <S.ThemeTextBox>
+                <S.ThemeText>
+                  <S.ThemeText_img src={My2} /> 벚꽃 테마
+                </S.ThemeText>
+                <S.ThemeSelectBtn_img
+                  src={myTheme === "어스 벚꽃테마" ? SelectImg : NonSelectImg}
+                  onClick={() => handleThemeSelection("어스 벚꽃테마")}
+                />
+              </S.ThemeTextBox>
+            </S.ThemeBox>
+          )}
+        </S.ThemeMain>
+        <S.SaveBox>
+          {isChangeLoading ? (
+            <Button bgColor="#747474" disabled={isChangeLoading}>
+              저장 중...
+            </Button>
+          ) : (
+            <Button
+              bgColor="#000"
+              onClick={changeTheme}
+              disabled={isChangeLoading}
+            >
+              저장하기
+            </Button>
+          )}
+        </S.SaveBox>
+      </S.Container>
+    </>
   );
 };
 
