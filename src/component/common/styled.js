@@ -62,7 +62,11 @@ export const buttonText = styled.p`
 
 // Modal1
 export const ModalBackground = styled.div`
-  position: absolute;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +77,9 @@ export const ModalBackground = styled.div`
     width: 440px;
   }
   margin: 0 auto;
+  z-index: 100;
 `;
+
 export const ModalTextContainer1 = styled.div`
   margin: 285px auto 30px;
   width: 313px;
