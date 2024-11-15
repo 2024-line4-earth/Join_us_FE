@@ -7,6 +7,7 @@ import JoinMainForm from "../component/Join/JoinMainForm";
 import JoinHeader from "../component/Join/JoinHeader";
 import JoinButton from "../component/Join/JoinButton";
 import apiCall from "../api/Api";
+import Cookies from "js-cookie";
 
 const MainContainer = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const Text = styled.div`
   letter-spacing: -0.48px;
 
   span {
-    color: var(--Gray5, #2E302D);
+    color: var(--Gray5, #2e302d);
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -37,6 +38,7 @@ const Text = styled.div`
 `;
 
 const JoinPage = () => {
+  const token = Cookies.get("access_token");
   const [tutorialCompleted, setTutorialCompleted] = useState(false); // 기본값 false로 설정
   const [userId, setUserId] = useState(null); // 사용자 ID 상태
   const navigate = useNavigate();
@@ -45,7 +47,9 @@ const JoinPage = () => {
     // tutorial_completed 상태를 가져오는 함수
     const fetchTutorialStatus = async () => {
       try {
-        const response = await apiCall("join/tutorial", "GET", null, null);
+        console.log("시작전");
+        const response = await apiCall("join/tutorial/", "GET", null, token);
+        console.log(response);
         setTutorialCompleted(response.tutorial_completed); // tutorial_completed 값을 상태에 설정
         setUserId(response.id); // 서버로부터 받은 id 값을 상태에 저장
       } catch (error) {

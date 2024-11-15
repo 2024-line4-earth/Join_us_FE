@@ -24,7 +24,6 @@ const LoginForm = () => {
     try {
       const response = await apiCall("users/login/", "post", data, null);
       console.log(response.data);
-      // const token = response.headers["authorization"];
       const token = response.data.token;
 
       if (token) {

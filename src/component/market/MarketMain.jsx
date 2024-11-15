@@ -8,10 +8,10 @@ const MarketMain = () => {
   const [itemData, setItemData] = useState([]);
   const token = Cookies.get("access_token");
   useEffect(() => {
-    console.log(token);
     const fetchData = async () => {
       try {
         const response = await apiCall("/market/market", "GET", null, token);
+        console.log(response.data);
         console.log(response.data.item);
         setItemData(response.data.item);
       } catch (error) {
@@ -28,13 +28,13 @@ const MarketMain = () => {
             <S.ImgContainer>
               <S.MarketItemImg src={item.item_image} />
             </S.ImgContainer>
-            <S.ItemNameContainer>
-              <S.ItemName>{item.item_name}</S.ItemName>
-            </S.ItemNameContainer>
-            <S.ItemPointContainer>
-              <S.Point>{item.item_price}</S.Point>
-            </S.ItemPointContainer>
           </Link>
+          <S.ItemNameContainer>
+            <S.ItemName>{item.item_name}</S.ItemName>
+          </S.ItemNameContainer>
+          <S.ItemPointContainer>
+            <S.Point>{item.price}</S.Point>
+          </S.ItemPointContainer>
         </S.CardContainer>
       ))}
     </S.MainContainer>
