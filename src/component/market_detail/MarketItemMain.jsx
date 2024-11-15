@@ -61,7 +61,7 @@ const MarketItemMain = () => {
       </S.ItemImgContainer>
       <S.ItemInfoContainer>
         <S.ItemText>{detailData.item?.item_name}</S.ItemText>
-        <S.PointContainerWhite>{detailData.item?.price}</S.PointContainerWhite>
+        <S.PointContainerWhite>{detailData.item?.price}P</S.PointContainerWhite>
       </S.ItemInfoContainer>
       <S.ItemDetailText>
         {detailData.item?.description}

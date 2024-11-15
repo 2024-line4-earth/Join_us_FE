@@ -11,8 +11,6 @@ const MarketMain = () => {
     const fetchData = async () => {
       try {
         const response = await apiCall("/market/market", "GET", null, token);
-        console.log(response.data);
-        console.log(response.data.item);
         setItemData(response.data.item);
       } catch (error) {
         console.log(error);
@@ -33,7 +31,7 @@ const MarketMain = () => {
             <S.ItemName>{item.item_name}</S.ItemName>
           </S.ItemNameContainer>
           <S.ItemPointContainer>
-            <S.Point>{item.price}</S.Point>
+            <S.Point>{item.price}P</S.Point>
           </S.ItemPointContainer>
         </S.CardContainer>
       ))}
