@@ -190,7 +190,7 @@ export const ShoppinglistMain = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 40px 25px;
+  gap: 30px 20px;
   width: 100%;
   max-height: 58vh;
   overflow-y: auto;
@@ -201,7 +201,8 @@ export const CardContainer = styled.div`
   height: 200px;
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
+  margin-left: 7px;
+  margin-top: 10px;
 `;
 
 export const ImgContainer = styled.div`
