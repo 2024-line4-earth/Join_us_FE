@@ -148,10 +148,13 @@ export const LevelImage = styled.img`
   position: relative;
   margin: 0 auto;
   z-index: -10;
+  width: 278px;
+  height: 278px;
+  flex-shrink: 0;
 `;
 
 export const LevelCircle = styled.div`
-  margin: -215px auto 0 auto;
+  margin: -210px auto 0 auto;
   width: 110px;
   height: 110px;
   box-shadow: 0 0 12px 0 #b2b3b2;

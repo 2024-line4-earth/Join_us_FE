@@ -4,9 +4,9 @@ import apiCall from "../../api/Api";
 import Cookies from "js-cookie";
 
 const UsRanking = () => {
-  const [myRanking, setMyRanking] = useState(50);
-  const [myName, setMyName] = useState("조인어스");
-  const [myLevel, setMyLevel] = useState(1);
+  const [myRanking, setMyRanking] = useState();
+  const [myName, setMyName] = useState("");
+  const [myLevel, setMyLevel] = useState();
 
   const [topUsers, setTopUsers] = useState([]);
   const token = Cookies.get("access_token");
