@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // 연동 시 useEffect 추가
+import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 import firstLevel from "../../assets/img/firstLevel.svg";
 import step1 from "../../assets/img/step1.svg";
@@ -9,14 +9,44 @@ import step1Pink from "../../assets/img/step1Pink.svg";
 import step2Pink from "../../assets/img/step2Pink.svg";
 import step3Pink from "../../assets/img/step3Pink.svg";
 import step4Pink from "../../assets/img/step4Pink.svg";
+import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
 
 const UsLevel = () => {
-  const [myLevel, setMyLevel] = useState(5);
-  const [myStep, setMyStep] = useState(1);
+  const [myCard, setMyCard] = useState();
+  const [myLevel, setMyLevel] = useState();
+  const [myStep, setMyStep] = useState();
+  const [currentTheme, setCurrentTheme] = useState();
+  const token = Cookies.get("access_token");
 
-  // 임시 데이터 설정
-  const currentTheme = "어스 벚꽃테마";
-  const myCard = 2;
+  useEffect(() => {
+    // 처음 컴포넌트가 마운트 될 때 us level 조회
+    getUs();
+  }, []);
+
+  // us 조회 함수
+  const getUs = async () => {
+    if (!token) {
+      alert("로그인 정보가 없습니다.");
+      return;
+    }
+
+    try {
+      // us 조회 API 호출 (GET 요청)
+      const response = await apiCall("us/us/", "GET", null, token);
+      console.log("가운데 level 조회 api 응답", response);
+
+      const { current_theme, my } = response.data;
+
+      setCurrentTheme(current_theme);
+      setMyCard(my.total_cards);
+      setMyLevel(my.level);
+      setMyStep(my.step);
+    } catch (error) {
+      console.error("가운데 level 조회 실패:", error);
+      alert("가운데 level 조회에 실패했습니다. 다시 시도해주세요. ");
+    }
+  };
 
   const getStepImage = () => {
     if (myCard == 0) return firstLevel;

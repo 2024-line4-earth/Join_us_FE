@@ -36,7 +36,7 @@ const Text = styled.div`
   letter-spacing: -0.48px;
 
   span {
-    color: var(--Gray5, #2E302D);
+    color: var(--Gray5, #2e302d);
     font-family: Pretendard;
     font-size: 12px;
     font-style: normal;
@@ -47,9 +47,9 @@ const Text = styled.div`
 `;
 
 const JoinPage = () => {
+  const token = Cookies.get("access_token");
   const [tutorialCompleted, setTutorialCompleted] = useState(false); // 기본값 false로 설정
   const navigate = useNavigate();
-  const token = Cookies.get("access_token");
 
   useEffect(() => {
     // tutorial_completed 상태를 가져오는 함수
