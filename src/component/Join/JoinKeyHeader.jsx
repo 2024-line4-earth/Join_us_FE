@@ -58,10 +58,14 @@ const JoinKeyHeader = ({ onKeywordChange }) => {
     }
   };
 
+  const goToJoinClick = () => {
+    navigate("/join");
+  }
+
   return (
     <S.KeyHeader>
       <S.HeaderBtn>
-        <img src={LeftBtn} alt="Left Btn" />
+        <img src={LeftBtn} alt="Left Btn" onClick={goToJoinClick} />
       </S.HeaderBtn>
       <S.DropDownContainer>
         <S.HeaderRight>

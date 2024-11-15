@@ -14,7 +14,8 @@ import apiCall from "../api/Api";
 const Layout = styled.div`
   width: 100%;
   position: relative;
-  max-height: calc(100vh - 78px - 1em);
+  max-height: calc(100vh - 78px + 1em);
+  height: calc(100vh - 78px  + 1em);
   overflow-y: auto;
   left: 0;
 `;
@@ -22,7 +23,7 @@ const Layout = styled.div`
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 80px 10px;
 `;
 
 const JoinCreatePage = () => {
@@ -228,15 +229,16 @@ const JoinCreatePage = () => {
 
   return (
     <>
-      <Layout>
-        <MainContainer>
-          <JoinCreateHeader
+      <JoinCreateHeader
             currentPage={currentPage}
             selectedKeyword={selectedKeyword}
             setSelectedKeyword={setSelectedKeyword}
             inputStyle={inputStyle.selectedKeyword}
             goBackToPreviousPage={goBackToPreviousPage}
           />
+      <Layout>
+        <MainContainer>
+          
           <JoinCreateMain
             currentPage={currentPage}
             image={image}

@@ -245,7 +245,15 @@ export const KeyHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0 ${(props) => (props.currentPage > 2 ? "10px" : "30px")} 0;
+  padding: 30px 0 ${(props) => (props.currentPage > 2 ? "10px" : "30px")} 0;
+  height: 30px;
+  /* padding-top: 15px; */
+  width: 90%;
+  top: 0;
+  position: fixed;
+  z-index: 10;
+  background: #FFFFFF;
+  margin-bottom: 15px;
 `;
 
 export const HeaderBtn = styled.button`
@@ -384,15 +392,15 @@ export const CreateMainContainer = styled.div`
   justify-content: center;
   align-items: center; 
   margin: 0 auto;
-  width: 269px;
-  height: 478px;
+  width: 313px;
+  height: 419px;
 `;
 
 export const CreateFrame = styled.div`
   position: absolute;
   z-index: 1;
-  width: 269px;
-  height: 478px;
+  width: 313px;
+  height: 419px;
   flex-shrink: 0;
   border-radius: 8px;
   background: var(--Gray2, #E0E0E0);
