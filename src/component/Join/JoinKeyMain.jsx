@@ -6,7 +6,7 @@ const JoinKeyMain = () => {
   return (
     <>
       <S.KeyMainContainer>
-        {[...Array(10)].map((_, index) => (
+        {[...Array(8)].map((_, index) => (
           <S.ImageCard key={index}>
             <img src={ExImage} alt={`Example ${index + 1}`} />
           </S.ImageCard>
