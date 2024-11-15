@@ -20,7 +20,7 @@ const UsLevel = () => {
   const token = Cookies.get("access_token");
 
   useEffect(() => {
-    // 처음 컴포넌트가 마운트 될 때 테마 조회
+    // 처음 컴포넌트가 마운트 될 때 us level 조회
     getUs();
   }, []);
 
