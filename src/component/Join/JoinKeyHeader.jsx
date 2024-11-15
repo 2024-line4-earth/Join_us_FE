@@ -5,18 +5,21 @@ import LeftBtn from '../../assets/img/leftBtn.svg';
 import down from '../../assets/img/down.svg';
 import create from '../../assets/img/create.svg';
 import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
 
 const JoinKeyHeader = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedKeyword, setSelectedKeyword] = useState("키워드 선택");
   const [tutorialCompleted, setTutorialCompleted] = useState(false);
   const navigate = useNavigate();
+  const token = Cookies.get("access_token");
 
   useEffect(() => {
     const fetchTutorialStatus = async () => {
       try {
-        const response = await apiCall("join/tutorial", "GET", null, null);
-        setTutorialCompleted(response.tutorial_completed);
+        const response = await apiCall("join/tutorial/", "GET", null, token);
+        setTutorialCompleted(response.data.tutorial_completed);
+        console.log(response);
       } catch (error) {
         console.error("Error:", error);
       }

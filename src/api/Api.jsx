@@ -8,7 +8,7 @@ const apiCall = async (url, method = "get", data = null, token = null) => {
       "Content-Type": "application/json",
     };
     if (token) {
-      headers["Authorization"] = `Authorization Token ${token}`;
+      headers["Authorization"] = `token ${token}`;
     }
     const config = {
       url,

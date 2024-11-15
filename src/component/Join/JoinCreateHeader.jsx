@@ -11,8 +11,17 @@ const JoinCreateHeader = ({ currentPage, selectedKeyword, setSelectedKeyword, in
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const handleSelectKeyword = (keyword) => {
-    setSelectedKeyword(keyword);
+  const keywordMap = {
+    "전체": "ALL",
+    "일회용품": "DISPOSABLES",
+    "분리수거": "RECYCLING",
+    "텀블러": "TUMBLER",
+    "대기전력": "STANDBY_POWER",
+    "기타": "OTHER"
+  };
+
+  const handleSelectKeyword = (koreanKeyword) => {
+    setSelectedKeyword(koreanKeyword); // 선택한 한국어 키워드 그대로 설정
     setIsDropdownOpen(false);
   };
 
@@ -24,10 +33,12 @@ const JoinCreateHeader = ({ currentPage, selectedKeyword, setSelectedKeyword, in
         </S.HeaderBtn>
         <S.DropDownContainer>
           <S.HeaderRight>
-            <S.Select onClick={toggleDropdown} style={inputStyle}>
-              <span>{selectedKeyword || "키워드 선택"}</span>
-              <img src={down} alt="down toggle" />
-            </S.Select>
+            {currentPage === 1 && (
+              <S.Select onClick={toggleDropdown} style={inputStyle}>
+                <span>{selectedKeyword || "키워드 선택"}</span>
+                <img src={down} alt="down toggle" />
+              </S.Select>
+            )}
           </S.HeaderRight>
           {isDropdownOpen && (
             <S.DropdownMenu>

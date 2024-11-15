@@ -8,7 +8,13 @@ export const JoinFormText = styled.div`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.96px;
+  height: 30px;
+  padding-top: 15px;
   width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 10;
+  background: #FFFFFF;
 `;
 
 export const JoinFormContainer = styled.div`
@@ -82,7 +88,7 @@ export const TextContainer = styled.div`
   border-radius: 8px;
   border: 1px solid var(--Gray2, #E0E0E0);
   background: var(--Gray1, #F1F1F1);
-  margin-top: 77px;
+  margin-top: 20px;
   margin-bottom: 16px;
 `;
 
@@ -280,7 +286,7 @@ export const DropdownMenu = styled.div`
   height: 132px;
   flex-shrink: 0;
   cursor: pointer;
-  z-index: 2;
+  z-index: 4;
 
   border-radius: 16px;
   border: 1px solid var(--Gray2, #E0E0E0);
@@ -318,7 +324,7 @@ export const KeyMainContainer = styled.div`
   display: flex;
   flex-wrap: wrap; /* 아이템을 여러 줄에 걸쳐 배치 */
   overflow-y: auto;
-  padding: 16px;
+  padding: 0px 16px 16px 16px;
   gap: 16px; /* 카드 간격 설정 */
   scrollbar-width: none; // 스크롤바 숨기기
   ::-webkit-scrollbar {
@@ -344,6 +350,7 @@ export const KeyTextContainer = styled.div`
   display: inline-flex;
   width: fit-content;
   padding: 2px 8px;
+  margin-bottom: 16px;
   justify-content: center;
   align-items: center;
   border-radius: 34px;
@@ -476,6 +483,7 @@ export const MadeImg = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  overflow: hidden;
 `;
 
 export const BackContainer = styled.div`
@@ -554,6 +562,6 @@ export const UploadedImg = styled.img`
   object-fit: cover; /* 이미지가 프레임을 꽉 채우도록 설정 */
   border-radius: 8px; /* CreateFrame과 동일하게 설정 */
   position: absolute; /* CreateFrame과 동일한 위치에 이미지 배치 */
-  z-index: 1; /* CreateFrame과 동일한 z-index 설정 */
+  z-index: 3; /* CreateFrame과 동일한 z-index 설정 */
 `;
 

@@ -13,11 +13,13 @@ import LeftBtn from "../assets/img/leftBtn.svg";
 import RightBtn from "../assets/img/rightBtn.svg";
 import preLeftBtn from "../assets/img/preLeftBtn.svg";
 import apiCall from "../api/Api";
+import Cookies from "js-cookie";
 
 const Layout = styled.div`
   width: 100%;
   position: relative;
-  max-height: calc(100vh);
+  height: calc(100vh - 78px - 30px + 1em);
+  max-height: calc(100vh - 78px - 30px + 1em);
   overflow-y: auto;
   left: 0;
 `;
@@ -27,27 +29,26 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px 10px;
-  height: 90vh;
 `;
 
 const JoinExPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [id, setId] = useState(""); // 사용자 ID 상태
   const navigate = useNavigate(); 
+  const token = Cookies.get("access_token");
 
   useEffect(() => {
     // 페이지가 로드될 때 사용자 ID와 tutorial_completed 상태 가져오기
     const fetchTutorialStatus = async () => {
       try {
         console.log("GET 요청 시작"); // GET 요청 로그
-        const response = await apiCall("join/tutorial", "GET", null, null);
-        console.log("GET 요청 응답:", response); // GET 요청 응답 데이터 로그
+        const response = await apiCall("join/tutorial/", "GET", null, token);
+        console.log(response); // GET 요청 응답 데이터 로그
         setId(response.id); // 서버로부터 받은 id 값을 저장
       } catch (error) {
         console.error("Error fetching tutorial status:", error);
       }
     };
-
     fetchTutorialStatus();
   }, []);
 
@@ -62,14 +63,13 @@ const JoinExPage = () => {
   const goToCreatePage = async () => {
     try {
       const data = {
-        id: id,
         tutorial_completed: true,
       };
       console.log("POST 요청 시작:", data); // POST 요청 데이터 로그
-      const response = await apiCall("join/tutorial", "POST", data, null);
+      const response = await apiCall("join/tutorial/", "POST", data, token);
       console.log("POST 요청 응답:", response); // POST 요청 응답 데이터 로그
-      
-      if (response.tutorial_completed) {
+
+      if (response.data.tutorial_completed) {
         navigate("/create"); // POST 요청 성공 후 /create 페이지로 이동
       }
     } catch (error) {
@@ -79,9 +79,9 @@ const JoinExPage = () => {
 
   return (
     <>
+      <JoinHeader />
       <Layout>
         <MainContainer>
-          <JoinHeader />
           {currentPage < 3 && (
             <S.TextContainer>
               {currentPage === 1 && (

@@ -7,12 +7,13 @@ import JoinMainForm from "../component/Join/JoinMainForm";
 import JoinHeader from "../component/Join/JoinHeader";
 import JoinButton from "../component/Join/JoinButton";
 import apiCall from "../api/Api";
+import Cookies from "js-cookie";
 
 const Layout = styled.div`
   /* width: calc(100% - 2em); */
   width: 100%;
   position: relative;
-  max-height : calc(100vh);
+  max-height : calc(100vh - 78px - 30px + 1em);
   overflow-y : auto;
   left: 0;
 `;
@@ -47,16 +48,16 @@ const Text = styled.div`
 
 const JoinPage = () => {
   const [tutorialCompleted, setTutorialCompleted] = useState(false); // 기본값 false로 설정
-  const [userId, setUserId] = useState(null); // 사용자 ID 상태
   const navigate = useNavigate();
+  const token = Cookies.get("access_token");
 
   useEffect(() => {
     // tutorial_completed 상태를 가져오는 함수
     const fetchTutorialStatus = async () => {
       try {
-        const response = await apiCall("join/tutorial", "GET", null, null);
-        setTutorialCompleted(response.tutorial_completed); // tutorial_completed 값을 상태에 설정
-        setUserId(response.id); // 서버로부터 받은 id 값을 상태에 저장
+        const response = await apiCall("join/tutorial/", "GET", null, token);
+        console.log(response);
+        setTutorialCompleted(response.data.tutorial_completed); // tutorial_completed 값을 상태에 설정
       } catch (error) {
         console.error("Error fetching tutorial status:", error);
       }
@@ -76,14 +77,14 @@ const JoinPage = () => {
 
   return (
     <>
+      <JoinHeader />
       <Layout>
         <MainContainer>
-          <JoinHeader />
           <JoinMainForm />
           <Text>
             카드를 <span>클릭해</span> 이번달 실천카드를 확인해보세요!
           </Text>
-          <JoinButton userId={userId} tutorialCompleted={tutorialCompleted} />
+          <JoinButton tutorialCompleted={tutorialCompleted} />
           <Button bgColor="#1A1E1B" onClick={handleButtonClick}>
             실천 카드 만들러가기
           </Button>
