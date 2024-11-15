@@ -19,6 +19,7 @@ const MarketItemMain = () => {
         { item: goods_id_num },
         token
       );
+      window.location.reload();
       if (response.status == "201") {
         alert(response.data.message);
         window.location.reload();
