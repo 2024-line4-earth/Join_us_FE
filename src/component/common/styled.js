@@ -54,14 +54,15 @@ export const buttonText = styled.p`
   color: #fff;
   font-family: Pretendard;
   font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
   line-height: normal;
+  letter-spacing: -0.8px;
 `;
 
 // Modal1
 export const ModalBackground = styled.div`
   position: absolute;
-  top: -1em;
-  left: -1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,11 +97,12 @@ export const MainText1 = styled.div`
 `;
 
 export const Emoji = styled.img`
-  margin: 4px auto;
+  margin: 10px auto 0;
+  width: 30px;
 `;
 
 export const SubText1 = styled.div`
-  margin-top: 5px;
+  margin-top: 10px;
   color: var(--Gray5, #2e302d);
   text-align: center;
   font-family: Pretendard;
@@ -117,10 +119,12 @@ export const ModalTextContainer2 = styled.div`
   width: 313px;
   height: 94px;
   flex-shrink: 0;
-  border-radius: 30px;
+  border-radius: 35px;
   background: var(--White, #fff);
 `;
 export const MainText2 = styled.div`
+  margin-top: 32px;
+  align-items: center;
   color: var(--Gray5, #2e302d);
   text-align: center;
   font-family: Pretendard;
@@ -147,4 +151,5 @@ export const ModalButton2 = styled.button`
   line-height: normal;
   letter-spacing: -0.8px;
   border: none;
+  cursor: pointer;
 `;
