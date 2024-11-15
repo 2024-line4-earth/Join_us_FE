@@ -26,7 +26,6 @@ const UsRanking = () => {
     try {
       // us 조회 API 호출 (GET 요청)
       const response = await apiCall("us/us/", "GET", null, token);
-      console.log("랭킹 조회 api 응답", response);
 
       const { my_rank, my, top_users } = response.data;
 
@@ -42,9 +41,9 @@ const UsRanking = () => {
 
   // 2위 - 1위 - 3위 순으로 변경
   const reorderedTopUsers = [
-    topUsers[1] || { level: "N/A", username: "N/A" },
-    topUsers[0] || { level: "N/A", username: "N/A" },
-    topUsers[2] || { level: "N/A", username: "N/A" },
+    topUsers[1] || { level: "-", username: "" },
+    topUsers[0] || { level: "-", username: "" },
+    topUsers[2] || { level: "-", username: "" },
   ];
 
   return (

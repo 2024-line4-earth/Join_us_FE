@@ -34,6 +34,7 @@ const router = createBrowserRouter([
   { path: "/myQuit", element: <MyQuitPage /> },
   { path: "/myShoppinglist", element: <MyShoppinglistPage /> },
   { path: "/myTheme", element: <MyThemePage /> },
+  { path: "/*", element: <LoginPage /> },
 ]);
 
 export default router;
