@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Footer from "../component/common/Footer";
 import MyHeader from "../component/my/MyHeader";
 import MyBlocks from "../component/my/MyBlocks";
+import Modal2 from "../component/common/Modal2";
 
 const Layout = styled.div`
   font-family: Pretendard;
@@ -18,11 +19,14 @@ const Layout = styled.div`
 
 const MyPage = () => {
   return (
-    <Layout>
-      <MyHeader />
-      <MyBlocks />
-      <Footer />
-    </Layout>
+    <>
+      <Modal2 />
+      <Layout>
+        <MyHeader />
+        <MyBlocks />
+        <Footer />
+      </Layout>
+    </>
   );
 };
 
