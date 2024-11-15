@@ -7,9 +7,13 @@ export const HeaderContainer = styled.div`
   height: 78px;
   top: 0;
   left: 0;
-  /* position: fixed; */
+  position: fixed;
   background-color: #fff;
   z-index: 10;
+  @media (width> 440px) {
+    width: 440px;
+    left: calc(50% - 220px);
+  }
 `;
 export const Header = styled.div`
   padding: 20px;
