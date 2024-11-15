@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../common/Button";
+import Loading from "../Loading/Loading";
 import {
   EyeContainer,
   LoginFormContainer,
@@ -17,6 +18,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isDuplicate, setIsDuplicate] = useState(null);
+  const [loading, setLoading] = useState(true);
   const formRef = useRef(null);
   const navigate = useNavigate();
   const handleDuplicateCheck = () => {
@@ -29,45 +31,45 @@ const SignupForm = () => {
   const isPasswordChecked = password === confirmPassword;
   const isFormComplete = username && userId && password && confirmPassword;
   const Register = async () => {
-    const data = {
-      username: username,
-      userid: userId,
-      password: password,
-      password2: confirmPassword,
-    };
-    try {
-      const response = await apiCall("users/register/", "POST", data, null);
-      console.log(response);
-      if (response.data.token) {
-        localStorage.setItem("accessToken", response.data.token);
-        navigate("/join");
-      } else {
-        alert("아이디/비밀번호를 다시 확인해주세요!");
+    if (formRef.current.checkValidity()) {
+      const data = {
+        username: username,
+        userid: userId,
+        password: password,
+        password2: confirmPassword,
+      };
+      try {
+        setLoading(true);
+        const response = await apiCall("users/register/", "POST", data, null);
+        console.log(response);
+        if (response.data.token) {
+          setLoading(false);
+          localStorage.setItem("accessToken", response.data.token);
+          navigate("/join");
+        } else if (response.data.errors.password) {
+          setLoading(false);
+          alert(response.data.errors.password[0]);
+        } else if (response.data.errors.username) {
+          setLoading(false);
+          setIsDuplicate("red");
+        }
+      } catch (error) {
+        console.log("에러발생s", error);
       }
-    } catch (error) {
-      console.log("에러발생s");
     }
   };
   return (
     <>
+      <div>{loading ? <Loading /> : null}</div>
       <LoginFormContainer ref={formRef}>
         <PasswordWrapper>
           <LoginInput
             placeholder="닉네임을 입력해주세요"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
             style={{ borderColor: isDuplicate }}
           ></LoginInput>
-          <EyeContainer>
-            <DuplicateCheckBtn type="button" onClick={handleDuplicateCheck}>
-              중복확인
-            </DuplicateCheckBtn>
-          </EyeContainer>
-          {isDuplicate === "green" && (
-            <ErrorText style={{ color: "green" }}>
-              사용 가능한 아이디입니다.
-            </ErrorText>
-          )}
           {isDuplicate === "red" && (
             <ErrorText style={{ color: "red" }}>
               중복된 아이디입니다. 다른 아이디를 사용해주세요.
@@ -78,18 +80,22 @@ const SignupForm = () => {
         <LoginInput
           placeholder="아이디를 입력해주세요"
           value={userId}
+          required
           onChange={(e) => setUserId(e.target.value)}
         ></LoginInput>
         <LoginInput
           placeholder="비밀번호를 입력해주세요"
           type="password"
           value={password}
+          minLength="8"
+          required
           onChange={(e) => setPassword(e.target.value)}
         ></LoginInput>
         <LoginInput
           placeholder="비밀번호를 다시 입력해주세요"
           type="password"
           value={confirmPassword}
+          required
           onChange={(e) => setConfirmPassword(e.target.value)}
         ></LoginInput>
       </LoginFormContainer>
@@ -97,7 +103,6 @@ const SignupForm = () => {
         <Button
           bgColor={isFormComplete && isPasswordChecked ? "#1A1E1B" : "#747474"}
           type="button"
-          disabled={!isFormComplete}
           onClick={Register}
         >
           회원가입
