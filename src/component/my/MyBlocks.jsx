@@ -1,14 +1,14 @@
 import React from "react";
 import * as S from "./styled";
 import EditMyinfo from "../../assets/img/MyEditMyinfo.svg";
-import Theme from "../../assets/img/Mytheme.svg";
+import Theme from "../../assets/img/MyTheme.svg";
 import Shoppinglist from "../../assets/img/MyShoppinglist.svg";
 import Contect from "../../assets/img/MyContect.svg";
 import Logout from "../../assets/img/MyLogout.svg";
 import Quit from "../../assets/img/MyQuit.svg";
 import { Link } from "react-router-dom";
 
-const MyBlocks = ({ setSelectedBlock }) => {
+const MyBlocks = () => {
   return (
     <>
       <S.MyMain>
