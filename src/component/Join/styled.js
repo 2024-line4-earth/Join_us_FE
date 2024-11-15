@@ -392,15 +392,15 @@ export const CreateMainContainer = styled.div`
   justify-content: center;
   align-items: center; 
   margin: 0 auto;
-  width: 313px;
-  height: 419px;
+  width: 269px;
+  height: 478px;
 `;
 
 export const CreateFrame = styled.div`
   position: absolute;
   z-index: 1;
-  width: 313px;
-  height: 419px;
+  width: 269px;
+  height: 478px;
   flex-shrink: 0;
   border-radius: 8px;
   background: var(--Gray2, #E0E0E0);
@@ -424,6 +424,7 @@ export const CautionText = styled.div`
   display: flex;
   align-items: center;
   width: 313px;
+  margin-top: 4px;
   margin-bottom: 4px;
   span{
     color: var(--Negative-Error-Cancel, #F66466);
