@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./styled";
 import Button from "../../component/common/Button";
-import Theme from "../../assets/img/Mytheme.svg";
+import Theme from "../../assets/img/MyTheme.svg";
 import BasicThemeImg from "../../assets/img/MyBasicTheme.svg";
 import PinkThemeImg from "../../assets/img/MyPinkTheme.svg";
 import My1 from "../../assets/img/My1.svg";
