@@ -23,6 +23,7 @@ export const Header = styled.div`
 
 export const HeaderText = styled.p`
   color: #000;
+  line-height: 36px;
   font-family: Pretendard;
   font-size: 24px;
   font-style: normal;

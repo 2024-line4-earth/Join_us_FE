@@ -1,23 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as S from "./styled";
-import apiCall from "../../api/Api";
-import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
-const MarketMain = () => {
-  const [itemData, setItemData] = useState([]);
-  const token = Cookies.get("access_token");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await apiCall("/market/market", "GET", null, token);
-        setItemData(response.data.item);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+const MarketMain = ({ itemData }) => {
   return (
     <S.MainContainer>
       {itemData.map((item, index) => (
