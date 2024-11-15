@@ -18,11 +18,13 @@ const Layout = styled.div`
 
 const MyPage = () => {
   return (
-    <Layout>
-      <MyHeader />
-      <MyBlocks />
-      <Footer />
-    </Layout>
+    <>
+      <Layout>
+        <MyHeader />
+        <MyBlocks />
+        <Footer />
+      </Layout>
+    </>
   );
 };
 
