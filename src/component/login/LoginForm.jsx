@@ -6,8 +6,10 @@ import eye from "../../assets/img/password_eye.svg";
 import { Link } from "react-router-dom";
 import apiCall from "../../api/Api";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
@@ -22,8 +24,8 @@ const LoginForm = () => {
       password: password,
     };
     try {
+      setLoading(true);
       const response = await apiCall("users/login/", "post", data, null);
-      console.log(response.data);
       const token = response.data.token;
 
       if (token) {
@@ -32,7 +34,12 @@ const LoginForm = () => {
           secure: true,
           sameSite: "None",
         });
-        navigate("/join");
+        setLoading(false);
+        navigate("/us");
+      }
+      if (response.data.errors) {
+        setLoading(false);
+        alert(response.data.message + "아이디 혹은 비밀번호를 확인해주세요!");
       }
     } catch (error) {
       console.log(error);
@@ -40,6 +47,7 @@ const LoginForm = () => {
   };
   return (
     <>
+      <div>{loading ? <Loading /> : null}</div>
       <S.LoginFormContainer>
         <S.LoginInput
           placeholder="아이디를 입력해주세요"

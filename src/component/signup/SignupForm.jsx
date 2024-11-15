@@ -18,15 +18,9 @@ const SignupForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isDuplicate, setIsDuplicate] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
   const navigate = useNavigate();
-  const handleDuplicateCheck = () => {
-    // 특정 조건에 따라 실행
-    setIsDuplicate("red");
-    setIsDuplicate("green");
-    console.log(formRef.current);
-  };
 
   const isPasswordChecked = password === confirmPassword;
   const isFormComplete = username && userId && password && confirmPassword;
@@ -45,7 +39,7 @@ const SignupForm = () => {
         if (response.data.token) {
           setLoading(false);
           localStorage.setItem("accessToken", response.data.token);
-          navigate("/join");
+          navigate("/us");
         } else if (response.data.errors.password) {
           setLoading(false);
           alert(response.data.errors.password[0]);

@@ -13,7 +13,7 @@ import selected_my from "../../assets/img/Footer_selected_My.svg";
 const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("us");
 
   useEffect(() => {
     // 현재 경로에 따라 selected 상태 설정
