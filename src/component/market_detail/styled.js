@@ -43,8 +43,8 @@ export const MainContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   /* height: calc(100vh - 100px - 78px -1em); */
-  max-height: calc(100vh - 100px - 78px - 1em);
-  margin-top: 100px;
+  max-height: calc(100vh - 60px - 78px - 1em);
+  margin-top: 60px;
   padding: 0 calc((100% - 320px) / 2);
   overflow-y: auto;
 `;
@@ -56,6 +56,7 @@ export const ItemImgContainer = styled.div`
   background-color: #fff;
   display: flex;
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
   margin-bottom: 20px;
 `;
 
