@@ -58,7 +58,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 50px 25px;
+  gap: 30px 20px;
   width: 100%;
   max-height: 58vh;
   margin-top: 200px;
@@ -66,10 +66,12 @@ export const MainContainer = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  width: calc(50% - 12.5px);
+  width: calc(50% - 20px);
   height: 200px;
   display: flex;
   flex-direction: column;
+  margin-left: 7px;
+  margin-top: 10px;
 `;
 
 export const ImgContainer = styled.div`
@@ -89,7 +91,7 @@ export const MarketItemImg = styled.img`
 `;
 
 export const ItemNameContainer = styled.div`
-  display: inline-flex;
+  display: flex;
   width: fit-content;
   height: 24px;
   padding: 2px 8px;
