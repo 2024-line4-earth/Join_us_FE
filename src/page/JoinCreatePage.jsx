@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import * as S from "../component/Join/styled";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import JoinCreateHeader from "../component/Join/JoinCreateHeader";
 import JoinCreateMain from "../component/Join/JoinCreateMain";
 import Footer from "../component/common/Footer";
@@ -36,6 +36,8 @@ const JoinCreatePage = () => {
   const [imageBlob, setImageBlob] = useState(null);
   const navigate = useNavigate();
   const token = Cookies.get("access_token");
+  const location = useLocation();
+  const month = location.state?.month; // 선택된 월 가져오기
 
   const createSubmit = async () => {
     // 비어 있는 필드에 스타일 적용
@@ -211,8 +213,8 @@ const JoinCreatePage = () => {
   const goBackToPreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prevPage) => prevPage - 1);
-    } else {
-      navigate("/key");
+    }else {
+      navigate("/key", { state: { month: window.selectedMonth } }); // 선택된 월 정보를 함께 전달
     }
   };
 
