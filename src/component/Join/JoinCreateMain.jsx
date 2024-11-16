@@ -7,10 +7,15 @@ import Plus from "../../assets/img/plus.svg";
 import cameraF from "../../assets/img/cameraFrame.svg"; 
 import GreenF from "../../assets/img/greenFrame.svg";
 import GrayF from "../../assets/img/grayFrame.svg";
-import ExImg from "../../assets/img/ExImg.svg";
+import Sp1 from "../../assets/img/special1.svg";
+import Sp2 from "../../assets/img/special2.svg";
 
-const JoinCreateMain = ({ currentPage, image, setImage, explanation, setExplanation, inputStyle, selectedFrame, handleFrameSelect, setImageBlob }) => {
+
+const JoinCreateMain = ({ currentPage, image, setImage, explanation, setExplanation, inputStyle, selectedFrame, handleFrameSelect, setImageBlob, purFrame }) => {
   
+  console.log("ㅇㅇ",purFrame);
+  const data = purFrame.purchased_frames;
+  console.log(data);
   const madeImgRef = useRef(null);
   
   const handleImageUpload = (event) => {
@@ -28,6 +33,7 @@ const JoinCreateMain = ({ currentPage, image, setImage, explanation, setExplanat
   const ImgClick = () => {
     document.getElementById("image").click();
   };
+
 
   useEffect(() => {
     const captureImage = async () => {
@@ -99,6 +105,18 @@ const JoinCreateMain = ({ currentPage, image, setImage, explanation, setExplanat
                 onClick={() => handleFrameSelect("grayF")}
                 style={{ border: selectedFrame === "grayF" ? "4px solid var(--Sub-color, #66A776)" : "none" }}
               />
+              {data &&
+                data.map((item, index) => (
+                  <S.FrameItem
+                    key={index} // 고유한 key 추가
+                    src={item.image} // item에서 동적으로 값을 가져올 수도 있음
+                    alt="pur"
+                    onClick={() => handleFrameSelect(item.frame_name)}
+                    style={{
+                      border: selectedFrame === item.frame_name ? "4px solid var(--Sub-color, #66A776)" : "none",
+                    }}
+                  />
+                ))}
           </S.FrameContainer>
           <S.FrameText>
             <span>원하는 프레임을 선택해주세요.</span>
@@ -140,6 +158,10 @@ const JoinCreateMain = ({ currentPage, image, setImage, explanation, setExplanat
                       ? cameraF
                       : selectedFrame === "greenF"
                       ? GreenF
+                      : selectedFrame == "스페셜 프레임1"
+                      ? Sp1
+                      : selectedFrame == "스페셜 프레임2"
+                      ? Sp2
                       : GrayF
                   }
                   alt="Selected Frame"

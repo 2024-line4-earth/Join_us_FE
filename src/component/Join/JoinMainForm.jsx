@@ -26,7 +26,9 @@ const JoinMainForm = () => {
   }, []);
 
   const handleImageClick = () => {
-    navigate("/key", { state: { month: window.selectedMonth } });
+    if (image !== ExImage) {
+      navigate("/key", { state: { month: window.selectedMonth } });
+    }
   };
 
   return (
@@ -42,7 +44,7 @@ const JoinMainForm = () => {
           <img
             src={image}
             alt="Random or Example Image"
-            style={{ width: "216px", height: "384px", borderRadius: "8px" }}
+            style={{ width: "216px", height: "384px", objectFit: "cover", borderRadius: "8px" }}
             onClick={handleImageClick}
           />
         </S.WrapperImage>

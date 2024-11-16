@@ -247,8 +247,10 @@ export const KeyHeader = styled.div`
   justify-content: space-between;
   padding: 30px 0 ${(props) => (props.currentPage > 2 ? "10px" : "30px")} 0;
   height: 30px;
-  /* padding-top: 15px; */
-  width: 90%;
+  @media (width < 440px) {
+    width: 90%;
+  }
+  width: 440px;
   top: 0;
   position: fixed;
   z-index: 10;
@@ -334,7 +336,8 @@ export const KeyMainContainer = styled.div`
   gap: 16px; /* 카드 간격 설정 */
   padding: 0px 16px 16px 16px;
   overflow-y: auto;
-  scrollbar-width: none; /* 스크롤바 숨기기 */
+  scrollbar-width: none;
+  /* scroll-behavior: none; 스크롤바 숨기기 */
   ::-webkit-scrollbar {
     display: none; /* 스크롤바 숨기기 */
   }
@@ -346,8 +349,8 @@ export const KeyMainContainer = styled.div`
 `;
 
 export const ImageCard = styled.div`
-  width: 144px;
-  height: 256px;
+  object-fit: cover; /* 이미지 비율 유지 */
+  border-radius: 8px; /* 모서리 둥글게 설정 (선택 사항) */
   flex-shrink: 0;
   flex: 1 1 calc(50% - 16px); /* 한 줄에 두 개씩 배치되도록 너비 설정 */
   display: flex;
@@ -369,12 +372,14 @@ export const KeyTextContainer = styled.div`
   display: inline-flex;
   width: fit-content;
   padding: 2px 8px;
-  margin-bottom: 16px;
+  margin: 16px;
   justify-content: center;
   align-items: center;
   border-radius: 34px;
   border: 1px solid var(--Gray2, #E0E0E0);
   background: var(--White, #FFF);
+  z-index: 100;
+
 
   span {
     color: var(--Gray5, #2E302D);
