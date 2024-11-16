@@ -11,6 +11,7 @@ import {
 import { ErrorText } from "./styled";
 import apiCall from "../../api/Api";
 import Cookies from "js-cookie";
+import * as S from "./styled";
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -109,7 +110,9 @@ const SignupForm = () => {
           회원가입
         </Button>
 
-        <Link to={"/"}>로그인 하러 가기</Link>
+        <Link to={"/"}>
+          <S.ToLogin>로그인 하러 가기</S.ToLogin>
+        </Link>
       </ButtonContainer>
     </>
   );
