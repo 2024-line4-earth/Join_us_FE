@@ -11,6 +11,7 @@ export const FooterContainer = styled.div`
   bottom: 0;
   left: 0;
   background-color: #1a1e1b;
+  z-index: 100;
 
   @media (width > 440px) {
     width: 440px;
