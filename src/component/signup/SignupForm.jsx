@@ -108,9 +108,9 @@ const SignupForm = () => {
         >
           회원가입
         </Button>
+
+        <Link to={"/"}>로그인 하러 가기</Link>
       </ButtonContainer>
-      <p>계정이 이미 있으신가요?</p>
-      <Link to={"/"}>로그인 하러 가기</Link>
     </>
   );
 };
