@@ -14,7 +14,8 @@ const UsBottom = () => {
   const token = Cookies.get("access_token");
 
   const stepFunc = (myStep) => {
-    if (myStep === 1) return "23%";
+    if (myStep === 0) return "0%";
+    else if (myStep === 1) return "23%";
     else if (myStep === 2) return "48%";
     else if (myStep === 3) return "71%";
     else return "95%";

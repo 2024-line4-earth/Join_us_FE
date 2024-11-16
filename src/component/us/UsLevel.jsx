@@ -51,6 +51,7 @@ const UsLevel = () => {
     } catch (error) {
       console.error("가운데 level 조회 실패:", error);
       alert("가운데 level 조회에 실패했습니다. 다시 시도해주세요. ");
+      setLoading(false);
     }
   };
 
