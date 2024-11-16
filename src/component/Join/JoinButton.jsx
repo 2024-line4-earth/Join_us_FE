@@ -34,18 +34,36 @@ const JoinButton = () => {
     }
 
     try {
+      // API 호출 전 콘솔 로그
+      console.log(`API 호출 시작: join/list?monthly=${month}`);
+    
+      // API 요청
       const response = await apiCall(`join/list`, "GET", { monthly: month }, token);
+    
+      // 응답 데이터 로그
+      console.log("API 응답 데이터:", response);
+    
+      // response에서 data 추출
       const data = response.data;
-      console.log(response);
-      if (data.length > 0) {
-        const randomIndex = Math.floor(Math.random() * data.length);
-        window.randomImage = data[randomIndex].image;
+    
+      // 데이터 확인 로그
+      console.log(`응답 data 확인:`, data);
+    
+      // 조건 확인 및 데이터 처리
+      if (data && data.images && data.images.length > 0) {
+        window.randomImage = data.images[0].image_url;
         window.selectedMonth = month;
+        console.log(`선택된 월:`, window.selectedMonth);
         window.dispatchEvent(new Event("randomImageUpdate"));
+        console.log(`randomImageUpdate 이벤트 디스패치 완료`);
+      } else {
+        console.log(`${month}월 데이터가 존재하지 않거나 이미지가 없습니다.`);
       }
     } catch (error) {
-      console.error(`${month}월 데이터를 가져오는 중 오류 발생`, error);
+      // 에러 로그
+      console.error(`${month}월 데이터를 가져오는 중 오류 발생:`, error);
     }
+    
   };
 
   const handleClick = (index, month) => {

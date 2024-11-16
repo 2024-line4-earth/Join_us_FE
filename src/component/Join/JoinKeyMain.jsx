@@ -4,7 +4,7 @@ import apiCall from "../../api/Api";
 import Cookies from "js-cookie";
 
 const JoinKeyMain = ({ month, selectedKeywordId }) => {
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState([]);
   const token = Cookies.get("access_token");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const JoinKeyMain = ({ month, selectedKeywordId }) => {
         console.log("API Response:", response);
         
         if (response.data) {
-          setImages(response.data);
+          setImage(response.data.images);
         }
       } catch (error) {
         console.error("이미지 데이터를 가져오는 중 오류 발생:", error);
@@ -34,9 +34,9 @@ const JoinKeyMain = ({ month, selectedKeywordId }) => {
 
   return (
     <S.KeyMainContainer>
-      {images && images.map((imageData, index) => (
+      {image && image.map((imagesData, index) => (
         <S.ImageCard key={index}>
-          <img src={imageData.image} alt={`Image ${index + 1}`} />
+          <img src={imagesData.image_url} alt={`Images ${index + 1}`} style={{ width: "144px", height: "256px", objectFit: "cover", borderRadius: "8px" }}/>
         </S.ImageCard>
       ))}
     </S.KeyMainContainer>

@@ -27,6 +27,9 @@ const MainContainer = styled.div`
 `;
 
 const JoinCreatePage = () => {
+  const [purFrame, setPurFrame] = useState([]);
+  const [downloadUrl , setDownloadUrl] = useState("");
+  const [buttonChange, setButtonChange] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedKeyword, setSelectedKeyword] = useState("");
   const [cardPostId, setCardPostId] = useState(null);
@@ -99,18 +102,20 @@ const JoinCreatePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const frameSelect = async () => {
-  //     try {
-  //       const response = await apiCall(`join/frame_selection/?cardpost_id=${cardPostId}`, "GET", null, token);
-  //       console.log(response);
-  //     }
-  //     catch(error) {
-  //       console.error("Error:", error);
-  //     }
-  //   };
-  //   frameSelect();
-  // }, []);
+  useEffect(() => {
+    const frameSelect = async () => {
+      console.log(cardPostId);
+      try {
+        const response = await apiCall(`join/frame_selection/`, "GET", {cardpost_id : cardPostId}, token);
+        console.log("응답결과",response);
+        setPurFrame(response.data)
+      }
+      catch(error) {
+        console.error("Error:", error);
+    };
+  }
+    frameSelect();
+  }, [cardPostId]);
   
   // const frameSubmit = async () => {
   //   try {
@@ -118,8 +123,8 @@ const JoinCreatePage = () => {
   //       cardpost_id: cardPostId,
   //       frame_completed: true,
   //     };
-  //     const response = await apiCall("join/frame_selection/?cardpost_id=<int>", "POST", data, token);
-  //     console.log("POST 요청 응답:", response); // POST 요청 응답 데이터 로그
+  //     const response = await apiCall("join/frame_selection/?cardpost_id=<int>", "GET", null, token);
+  //     console.log(response); // POST 요청 응답 데이터 로그
 
   //     if (response.data.message === "프레임 잘 골랐습니다.") {
   //       setCurrentPage(3); 
@@ -128,6 +133,7 @@ const JoinCreatePage = () => {
   //     console.error("Error updating tutorial status:", error);
   //   }
   // };
+
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -178,10 +184,43 @@ const JoinCreatePage = () => {
         }
       );
       console.log("POST 요청 성공:", response);
+      setButtonChange(false)
+      setDownloadUrl(response.data.image_url)
     } catch (error) {
       console.error("POST 요청 실패:", error);
     }
   };
+
+  const download=async()=>{
+    try{
+      const response = await axios.get(downloadUrl,{
+        responseType:"blob",
+      });
+      const blob = new Blob([response.data], { type: response.data.type });
+      const fileName = "downloaded_image.png";
+
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        // Internet Explorer 10+ 용
+        window.navigator.msSaveOrOpenBlob(blob, fileName);
+      } else {
+        // 다른 브라우저 용
+        const objectUrl = window.URL.createObjectURL(blob);
+        const tempLink = document.createElement("a");
+        tempLink.style.display = "none";
+        tempLink.href = objectUrl;
+        tempLink.setAttribute("download", fileName);
+  
+        // 임시로 버튼 동작으로 바로 트리거
+        tempLink.click();
+  
+        // 메모리 정리
+        window.URL.revokeObjectURL(objectUrl);
+      }
+
+    
+  }
+    catch(e){console.log(e)};
+  }
 
   const instaStory = async () => {
     const fileWithExtension = new File([imageBlob], "decorated_image.png", {
@@ -223,8 +262,8 @@ const JoinCreatePage = () => {
     navigate("/join");
   };
 
-  const handleFrameSelect = (frame) => {
-    setSelectedFrame(frame); // 프레임 선택 상태 업데이트
+  const handleFrameSelect = (frame_name) => {
+    setSelectedFrame(frame_name); // 프레임 선택 상태 업데이트
   };
 
   return (
@@ -249,6 +288,7 @@ const JoinCreatePage = () => {
             selectedFrame={selectedFrame}
             handleFrameSelect={handleFrameSelect}
             setImageBlob={setImageBlob}
+            purFrame={purFrame}
           />
           <S.SBtn
             onClick={() => {
@@ -273,7 +313,7 @@ const JoinCreatePage = () => {
               <>
                 <S.SaveImg>
                   <span>50 point</span>
-                  <Button bgColor="#000000" onClick={handleImageSave}>이미지 저장하기</Button>
+                  {buttonChange?<Button bgColor="#000000" onClick={handleImageSave}>이미지 저장하기</Button> : <Button onClick={download}>임시버튼</Button>}
                 </S.SaveImg>
                 <S.Insta>
                   <span>200 point</span>
