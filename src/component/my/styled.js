@@ -48,4 +48,7 @@ export const Line = styled.div`
   height: 1px;
   background: #e0e0e0;
   margin-top: 30px;
+  @media (width < 440px) {
+    width: 100%;
+  }
 `;
