@@ -32,11 +32,6 @@ const UsBottom = () => {
 
   // us 조회 함수
   const getUs = async () => {
-    if (!token) {
-      alert("로그인 정보가 없습니다.");
-      return;
-    }
-
     try {
       // us 조회 API 호출 (GET 요청)
       const response = await apiCall("us/us/", "GET", null, token);
