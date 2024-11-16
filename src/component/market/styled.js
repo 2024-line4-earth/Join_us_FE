@@ -88,7 +88,8 @@ export const ImgContainer = styled.div`
 `;
 
 export const MarketItemImg = styled.img`
-  height: 90%;
+  object-fit: cover;
+  height: 80%;
 `;
 
 export const ItemNameContainer = styled.div`

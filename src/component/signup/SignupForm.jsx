@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 import Loading from "../Loading/Loading";
 import {
@@ -10,6 +10,7 @@ import {
 } from "../login/styled";
 import { ErrorText } from "./styled";
 import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -34,11 +35,9 @@ const SignupForm = () => {
       try {
         setLoading(true);
         const response = await apiCall("users/register/", "POST", data, null);
-        console.log(response);
-        console.log(response.data.errors);
         if (response.data.token) {
           setLoading(false);
-          navigate("/us");
+          navigate("/");
         } else if (response.data.errors.password) {
           setLoading(false);
           alert(response.data.errors.password[0]);
@@ -109,6 +108,8 @@ const SignupForm = () => {
         >
           회원가입
         </Button>
+
+        <Link to={"/"}>로그인 하러 가기</Link>
       </ButtonContainer>
     </>
   );
