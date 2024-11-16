@@ -4,8 +4,12 @@ import Button from "../common/Button";
 import Cookies from "js-cookie";
 import apiCall from "../../api/Api";
 import axios from "axios";
+import Loading from "../Loading/Loading";
+
 const MarketItemMain = () => {
   const [detailData, setDetailData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const token = Cookies.get("access_token");
   const url = window.location.href;
   const parts = url.split("/");
@@ -13,6 +17,7 @@ const MarketItemMain = () => {
   const goods_id_num = Number(goods_id);
   const purchase = async () => {
     try {
+      setLoading(true);
       const response = await apiCall(
         `market/item/${goods_id}/`,
         "post",
@@ -25,13 +30,18 @@ const MarketItemMain = () => {
         window.location.reload();
       } else if (response.status == "202") {
         alert(response.data.message);
+        if (response.data) {
+          setLoading(false);
+        }
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   const download = async () => {
     try {
+      setLoading(true);
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_API}market/item/download/${goods_id}/`,
         {
@@ -51,8 +61,12 @@ const MarketItemMain = () => {
       a.click();
 
       URL.revokeObjectURL(url);
+      if (response.data) {
+        setLoading(false);
+      }
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -71,6 +85,7 @@ const MarketItemMain = () => {
     };
     fetchData();
   }, [goods_id]);
+
   let isPurchase = detailData.button_text === "구매하기";
 
   if (!detailData) return <div>Loading...</div>;
@@ -86,7 +101,7 @@ const MarketItemMain = () => {
       <S.ItemDetailText>
         {detailData.item?.description}
         <br />
-        <br /> <span>*다운받아 사용해주세요</span>
+        <br /> <span>{detailData.item?.note}</span>
       </S.ItemDetailText>
       <Button
         bgColor={isPurchase ? "#000" : "#417E59"}
