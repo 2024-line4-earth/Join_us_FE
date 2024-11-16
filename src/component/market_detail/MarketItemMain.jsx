@@ -5,40 +5,42 @@ import Cookies from "js-cookie";
 import apiCall from "../../api/Api";
 import axios from "axios";
 import Loading from "../Loading/Loading";
+import Modal2 from "../common/Modal2";
 
 const MarketItemMain = () => {
   const [detailData, setDetailData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isModal2Open, setIsModal2Open] = useState(false);
 
   const token = Cookies.get("access_token");
   const url = window.location.href;
   const parts = url.split("/");
   const goods_id = parts[parts.length - 1];
   const goods_id_num = Number(goods_id);
-  const purchase = async () => {
-    try {
-      setLoading(true);
-      const response = await apiCall(
-        `market/item/${goods_id}/`,
-        "post",
-        { item: goods_id_num },
-        token
-      );
-      window.location.reload();
-      if (response.status == "201") {
-        alert(response.data.message);
-        window.location.reload();
-      } else if (response.status == "202") {
-        alert(response.data.message);
-        if (response.data) {
-          setLoading(false);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  // const purchase = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await apiCall(
+  //       `market/item/${goods_id}/`,
+  //       "post",
+  //       { item: goods_id_num },
+  //       token
+  //     );
+  //     window.location.reload();
+  //     if (response.status == "201") {
+  //       alert(response.data.message);
+  //       window.location.reload();
+  //     } else if (response.status == "202") {
+  //       alert(response.data.message);
+  //       if (response.data) {
+  //         setLoading(false);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   }
+  // };
   const download = async () => {
     try {
       setLoading(true);
@@ -92,6 +94,7 @@ const MarketItemMain = () => {
   return (
     <>
       <div>{loading ? <Loading /> : null}</div>
+      <div>{isModal2Open ? <Modal2 /> : null}</div>
       <S.MainContainer>
         <S.ItemImgContainer>
           <S.Itemimg src={detailData.item?.item_image}></S.Itemimg>
@@ -109,7 +112,7 @@ const MarketItemMain = () => {
         </S.ItemDetailText>
         <Button
           bgColor={isPurchase ? "#000" : "#417E59"}
-          onClick={isPurchase ? purchase : download}
+          onClick={isPurchase ? () => setIsModal2Open(true) : download}
         >
           {detailData?.button_text}
         </Button>
