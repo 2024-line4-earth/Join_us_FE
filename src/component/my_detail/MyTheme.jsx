@@ -112,38 +112,43 @@ const MyTheme = () => {
               />
             </S.ThemeTextBox>
           </S.ThemeBox>
-          <S.Line />
+
           {/* 테마 목록이 2개 이상 있을 때만 벚꽃 테마 박스 렌더링 */}
           {themeList.length > 1 && (
-            <S.ThemeBox alt="어스 벚꽃테마 Box">
-              <S.ThemeImg src={PinkThemeImg} />
-              <S.ThemeTextBox>
-                <S.ThemeText>
-                  <S.ThemeText_img src={My2} /> 벚꽃 테마
-                </S.ThemeText>
-                <S.ThemeSelectBtn_img
-                  src={myTheme === "어스 벚꽃테마" ? SelectImg : NonSelectImg}
-                  onClick={() => handleThemeSelection("어스 벚꽃테마")}
-                />
-              </S.ThemeTextBox>
-            </S.ThemeBox>
+            <>
+              <S.Line />
+              <S.ThemeBox alt="어스 벚꽃테마 Box">
+                <S.ThemeImg src={PinkThemeImg} />
+                <S.ThemeTextBox>
+                  <S.ThemeText>
+                    <S.ThemeText_img src={My2} /> 벚꽃 테마
+                  </S.ThemeText>
+                  <S.ThemeSelectBtn_img
+                    src={myTheme === "어스 벚꽃테마" ? SelectImg : NonSelectImg}
+                    onClick={() => handleThemeSelection("어스 벚꽃테마")}
+                  />
+                </S.ThemeTextBox>
+              </S.ThemeBox>
+            </>
           )}
+          <S.SaveBox_Container>
+            <S.SaveBox>
+              {isChangeLoading ? (
+                <Button bgColor="#747474" disabled={isChangeLoading}>
+                  저장 중...
+                </Button>
+              ) : (
+                <Button
+                  bgColor="#000"
+                  onClick={changeTheme}
+                  disabled={isChangeLoading}
+                >
+                  저장하기
+                </Button>
+              )}
+            </S.SaveBox>
+          </S.SaveBox_Container>
         </S.ThemeMain>
-        <S.SaveBox>
-          {isChangeLoading ? (
-            <Button bgColor="#747474" disabled={isChangeLoading}>
-              저장 중...
-            </Button>
-          ) : (
-            <Button
-              bgColor="#000"
-              onClick={changeTheme}
-              disabled={isChangeLoading}
-            >
-              저장하기
-            </Button>
-          )}
-        </S.SaveBox>
       </S.Container>
     </>
   );

@@ -90,27 +90,32 @@ const MarketItemMain = () => {
 
   if (!detailData) return <div>Loading...</div>;
   return (
-    <S.MainContainer>
-      <S.ItemImgContainer>
-        <S.Itemimg src={detailData.item?.item_image}></S.Itemimg>
-      </S.ItemImgContainer>
-      <S.ItemInfoContainer>
-        <S.ItemText>{detailData.item?.item_name}</S.ItemText>
-        <S.PointContainerWhite>{detailData.item?.price}P</S.PointContainerWhite>
-      </S.ItemInfoContainer>
-      <S.ItemDetailText>
-        {detailData.item?.description}
-        <br />
-        <br /> <span>{detailData.item?.note}</span>
-      </S.ItemDetailText>
-      <Button
-        bgColor={isPurchase ? "#000" : "#417E59"}
-        onClick={isPurchase ? purchase : download}
-      >
-        {detailData?.button_text}
-      </Button>
-      <div style={{ marginBottom: "40px" }}></div>
-    </S.MainContainer>
+    <>
+      <div>{loading ? <Loading /> : null}</div>
+      <S.MainContainer>
+        <S.ItemImgContainer>
+          <S.Itemimg src={detailData.item?.item_image}></S.Itemimg>
+        </S.ItemImgContainer>
+        <S.ItemInfoContainer>
+          <S.ItemText>{detailData.item?.item_name}</S.ItemText>
+          <S.PointContainerWhite>
+            {detailData.item?.price}P
+          </S.PointContainerWhite>
+        </S.ItemInfoContainer>
+        <S.ItemDetailText>
+          {detailData.item?.description}
+          <br />
+          <br /> <span>{detailData.item?.note}</span>
+        </S.ItemDetailText>
+        <Button
+          bgColor={isPurchase ? "#000" : "#417E59"}
+          onClick={isPurchase ? purchase : download}
+        >
+          {detailData?.button_text}
+        </Button>
+        <div style={{ marginBottom: "40px" }}></div>
+      </S.MainContainer>
+    </>
   );
 };
 export default MarketItemMain;
