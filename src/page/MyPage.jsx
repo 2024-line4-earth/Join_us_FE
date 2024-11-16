@@ -9,7 +9,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   padding: 40px 10px;
-  height: calc(100vh + 30px);
+  height: calc(100vh + 80px);
   overflow-y: hidden;
   &::-webkit-scrollbar {
     display: none;

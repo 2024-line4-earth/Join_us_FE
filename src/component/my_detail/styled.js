@@ -153,6 +153,14 @@ export const ThemeBox = styled.div`
   flex-direction: column;
   margin: 35px 0 0 40px;
 `;
+export const SaveBox_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 100px auto;
+`;
+
 export const ThemeImg = styled.img`
   width: 134px;
 `;
