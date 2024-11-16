@@ -46,15 +46,12 @@ export const BolckImg = styled.img`
 `;
 
 export const SaveBox = styled.div`
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
   cursor: pointer;
 `;
 
 export const GrayBoxContainer = styled.div`
   margin: 120px auto;
+  width: 100%;
 `;
 
 export const GrayBox = styled.div`
@@ -62,15 +59,23 @@ export const GrayBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 353px;
+  width: 100%;
   height: 232px;
+  @media (width<440px) {
+    width: 100%;
+  }
   flex-shrink: 0;
   border-radius: 8px;
   background: var(--Gray1, #f1f1f1);
 `;
 
 /* EditMyInfo */
-export const EditMain = styled.div``;
+export const EditMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const EditBox = styled.div`
   margin: 36px auto;
   width: calc(100% - 50px);
@@ -148,6 +153,14 @@ export const ThemeBox = styled.div`
   flex-direction: column;
   margin: 35px 0 0 40px;
 `;
+export const SaveBox_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto 100px auto;
+`;
+
 export const ThemeImg = styled.img`
   width: 134px;
 `;
@@ -281,6 +294,7 @@ export const Contect_text = styled.h2`
   letter-spacing: -0.8px;
 `;
 export const SNSBox = styled.div`
+  height: 60px;
   display: inline-flex;
   flex-direction: column;
   padding: 8px 36px;

@@ -9,8 +9,8 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   padding: 40px 10px;
-  max-height: calc(100vh - 78px);
-  overflow-y: auto;
+  height: calc(100vh + 80px);
+  overflow-y: hidden;
   &::-webkit-scrollbar {
     display: none;
   }

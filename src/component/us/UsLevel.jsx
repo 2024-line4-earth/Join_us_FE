@@ -28,11 +28,6 @@ const UsLevel = () => {
 
   // us 조회 함수
   const getUs = async () => {
-    if (!token) {
-      alert("로그인 정보가 없습니다.");
-      return;
-    }
-
     try {
       setLoading(true);
       // us 조회 API 호출 (GET 요청)
@@ -51,6 +46,7 @@ const UsLevel = () => {
     } catch (error) {
       console.error("가운데 level 조회 실패:", error);
       alert("가운데 level 조회에 실패했습니다. 다시 시도해주세요. ");
+      setLoading(false);
     }
   };
 

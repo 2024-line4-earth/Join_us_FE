@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import * as S from "./styled";
 import Button from "../common/Button";
 import eye from "../../assets/img/password_eye.svg";
+import eye_close from "../../assets/img/password_eye_close.svg";
 import { Link } from "react-router-dom";
 import apiCall from "../../api/Api";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +64,10 @@ const LoginForm = () => {
             value={password}
           ></S.LoginInput>
           <S.EyeContainer>
-            <S.EyeImg src={eye} onClick={togglePasswordVisibility}></S.EyeImg>
+            <S.EyeImg
+              src={passwordVisible ? eye : eye_close}
+              onClick={togglePasswordVisibility}
+            ></S.EyeImg>
           </S.EyeContainer>
         </S.PasswordWrapper>
       </S.LoginFormContainer>

@@ -1,16 +1,17 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../common/Button";
 import Loading from "../Loading/Loading";
 import {
-  EyeContainer,
   LoginFormContainer,
   LoginInput,
   PasswordWrapper,
   ButtonContainer,
 } from "../login/styled";
-import { DuplicateCheckBtn, ErrorText } from "./styled";
+import { ErrorText } from "./styled";
 import apiCall from "../../api/Api";
+import Cookies from "js-cookie";
+import * as S from "./styled";
 
 const SignupForm = () => {
   const [username, setUsername] = useState("");
@@ -35,15 +36,17 @@ const SignupForm = () => {
       try {
         setLoading(true);
         const response = await apiCall("users/register/", "POST", data, null);
-        console.log(response);
         if (response.data.token) {
           setLoading(false);
-          localStorage.setItem("accessToken", response.data.token);
-          navigate("/us");
+          navigate("/");
         } else if (response.data.errors.password) {
           setLoading(false);
           alert(response.data.errors.password[0]);
         } else if (response.data.errors.username) {
+          setLoading(false);
+          setIsDuplicate("red");
+        } else if (response.data.errors.userid) {
+          console.log("실행됨?");
           setLoading(false);
           setIsDuplicate("red");
         }
@@ -61,7 +64,20 @@ const SignupForm = () => {
             placeholder="닉네임을 입력해주세요"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            style={{ borderColor: isDuplicate }}
+          ></LoginInput>
+          {isDuplicate === "red" && (
+            <ErrorText style={{ color: "red" }}>
+              중복된 닉네임입니다. 다른 닉네임를 사용해주세요.
+            </ErrorText>
+          )}
+        </PasswordWrapper>
+        <PasswordWrapper>
+          <LoginInput
+            placeholder="아이디를 입력해주세요"
+            value={userId}
             required
+            onChange={(e) => setUserId(e.target.value)}
             style={{ borderColor: isDuplicate }}
           ></LoginInput>
           {isDuplicate === "red" && (
@@ -70,18 +86,10 @@ const SignupForm = () => {
             </ErrorText>
           )}
         </PasswordWrapper>
-
-        <LoginInput
-          placeholder="아이디를 입력해주세요"
-          value={userId}
-          required
-          onChange={(e) => setUserId(e.target.value)}
-        ></LoginInput>
         <LoginInput
           placeholder="비밀번호를 입력해주세요"
           type="password"
           value={password}
-          minLength="8"
           required
           onChange={(e) => setPassword(e.target.value)}
         ></LoginInput>
@@ -101,6 +109,10 @@ const SignupForm = () => {
         >
           회원가입
         </Button>
+
+        <Link to={"/"}>
+          <S.ToLogin>로그인 하러 가기</S.ToLogin>
+        </Link>
       </ButtonContainer>
     </>
   );
