@@ -50,7 +50,7 @@
 ### 👍🏻 팀원 
 |이름| |개발 분야|개인 레포|역할|
 |---|---|---|---|---|
-|박성재|<img width="50" src="https://github.com/user-attachments/assets/edb2fab7-1d0c-468c-8323-854ca47c5c5c">|frontend|[sjae_o](https://github.com/sem201)|회원가입/로그인, 마켓페이지|
+|박성재|<img width="50" src="https://github.com/user-attachments/assets/edb2fab7-1d0c-468c-8323-854ca47c5c5c">|frontend|[sjae_o](https://github.com/sem201)|회원가입 및 로그인, 마켓페이지, 배포|
 |유동은|<img width="50" src="https://github.com/user-attachments/assets/c097a3c0-4c95-4104-90b5-2f794aadd39e">|frontend|[uehddms](https://github.com/uehddms)|어스페이지, 마이페이지|
 |이수용|<img width="50" src="https://github.com/user-attachments/assets/3f348156-be34-435d-9998-01dd792d0fa5">|frontend|[pedro0527](https://github.com/pedro0527)|조인페이지|
 
